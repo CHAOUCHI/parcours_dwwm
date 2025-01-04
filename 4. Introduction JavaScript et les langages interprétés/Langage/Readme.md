@@ -2,6 +2,8 @@
 
 Ce cours traite de la syntaxe du JavaScript et les avantages d'un langage haut niveau non fortement typés (typage dynamique).
 
+Retrouvez la syntaxe complète sur le site de la mdn ou sur w3schools.
+
 # Les interpréteurs JavaScript
 
 > Environnement d'execution : le programme ou système qui execute le code.
@@ -46,7 +48,7 @@ undefined
 
 `undefined` c'est la valeur de retour d'une fonction qui n'a pas d'appel à `return`; l'équivalent de `void` en C donc.
 
-Par défaut node affiche la valeur de retour de la commande que l'on tape. 
+Par défaut node cli affiche la valeur de retour de la commande que l'on tape. 
 
 Par exemple tapez
 ```
@@ -65,17 +67,20 @@ La variable `global` est en quelque sorte la grosse variable global qui contient
 Il contient par exemple la fonction setTimeout qui permet de programmer une fonction pour plus tard.
 
 ### Exercices
-1. Affichez "Bonjour tout le monde à l'écran"
+1. Affichez "Bonjour tout le monde" à l'écran.
 2. Testez nodejs pour faire des calculs comme `5*6/78`.
-2. Affichez la valeur de retour de la fonction `console.log`. Que signifie undefiened et selon vous pour est ce que la log return undefined.
-3. Affichez le contenu de l'objet global et cherchez les fonctions setTimeout et setInterval.
+2. Affichez la valeur de retour de la fonction `console.log`. Que signifie `undefined` et selon vous pour est ce que la log return `undefined`.
+3. Affichez le contenu de l'objet `global` et cherchez les fonctions `setTimeout` et `setInterval`.
+
 ## Un ficher source .js
-Créez un ficher nommé qui contien ce code : 
+Créez un ficher nommé qui contient ce code : 
+
 *main.js*
 ```js
 let age = 25;
-console.log("Salut ! ");
-console.log("Je m'appelle Massinissa est j'ai "+age+" ans ! ");
+const prenom = "Massinissa";
+console.log("Salut !");
+console.log("Je m'appelle "+prenom+" et j'ai "+age+" ans !");
 ```
 
 ## Executer le code source avec Nodejs. 
@@ -85,27 +90,174 @@ node main.js
 ```
 1. Observez le résultat.
 
-Voyez comme le `+` possède des strings en tant qu'opérandes, choses impossibles en C ! 
-2. Selon vous quels sont les nouvelles capcités de l'opérateur `+` en JavaScript par rapport à son habituel utilisation pour les additions de nombres(int ou float) en C.
+Voyez comme le `+` possède des strings en tant qu'opérandes, chose impossible en C ! 
+
+2. Selon vous quelles sont les nouvelles capacités de l'opérateur `+` en JavaScript par rapport à son utilisation habituel pour les additions de nombres (int ou float) en C.
 
 # Déclarez une variable
 ```js
 let age = 24;
 ```
 Les points virgules sont optionels en JS mais mieux vaux les laisser pour prévenir certain cas de figures problématiques.
-Je peux afficher 
-# Typage dynamique
-# Fonction callback
-- declaratrion
-- setTimeOut()
-- setinterlave()
 
-# Liste, des tableau plus puissants
-- foreach
-- filter
-- map
+Il existe deux types de variables en JavaScript : 
+- Les variables : `let`. La valeur et le type de la variabe peux changer.
+- Les constantes : `const`. La valeur et le type de la variable sont constants. 
+
+Toute opérations d'affectation via l'opérateur `=` provoquera l'arret du programme et la levée d'une erreur : `TypeError : Assignement to constant variable`.
+
+*main.js*
+```js
+const a = 4;
+a = 30;         // TypeError !
+a = "Salut";    // TypeError ! 
+```
+# Types primitifs du JavaScript
+Les types du JavaScript sont
+- number : nombres réels NaN inclus (NaN est une valeur spécial qui signifie Not a Number le résultat d'une division par 0 par exemple).
+- string
+- undefined
+- null
+- Object
+- Array
+
+# Typage dynamique
+Vous avez vu que le JavaScript permet le typage dynamique c'est à dire le changement de type d'une variable pendant son cycle de vie.
+
+Contrairement au langage C il n'y pas besoin d'avoir concience de l'espace mémoire de chaque type en JS.
+
+Les variables ne sont pas directement déclaré dans la pile ou dans la RAM mais dans la pile virtuel et la mémoire virtuel de l'interpréteur JavaScript nommées respectivement la *stack* et le *heap*.
+
+La stack est la mémoire local à une fonction.
+Lae heap est une mémoire globale au script entier.
+
+# Scope, portée de variable
+Si les variables son déclarées à la racine du script elle sont globales et sont donc contenu dans le *heap*.
+
+Si elles sont déclarées dans un bloc d'accolades alors, comme en C (if,else,for,while,function), elles sont locales.
+
+> Attention à toujours utiliser `const` ou `let` et jamais `var`. `var` crée des variables globales ce qui est une très mauvaise pratique.
+
+# Fonction callback
+Une fonction callback est une fonction passé en paramètre d'une autre.
+
+```js
+function hello(prenom){
+    console.log("Salut "+prenom);
+}
+
+function welcome(name,callback){
+    callback(name);
+}
+
+welcome("Massinissa",hello);
+```
+
+En JS les fonctions sont également des variables comme les autres et je peux les passer en paramètre d'une fonction tel quelle.
+
+Il n'est pas forcement nécessaire de déclarer explisitement une fonction, on peut créer la fonction à la volé via une fonction fléchée anonyme.
+
+```js
+function welcome(name,callback){
+    callback(name);
+}
+
+welcome("Massinissa",(prenom)=>{
+    console.log("Salut "+prenom);
+});
+```
+
+La fonction hello à été remplacée par une fonction fléchée anonyme.
+
+## setTimeOut()
+Les fonctions callbakc trouve leurs sens quand on souhaite effectuer une action asyncrone ou "pour plus tard".
+
+Par exemple la fonction setTimeout permet d'executer une fonction après un certain delai passé en paramètre.
+
+```js
+function whatTimeIsIt(){
+    console.log(Date());
+}
+setTimeout(whatTimeIsIt,5000);
+```
+
+Ici le navigateur va appeler la fonction `whatTimeIsIt` 5000ms après l'appel de `setTimeout`.
+
+## setInterval()
+
+setInterval() fonction de la même façon que setTimeout à la différence que l'appel de la fonction callback se fait à l'infini.
+
+1. Codez une horloge en JavaScript qui affiche l'heure à chaque seconde.
+
+# Les Liste, des tableaux plus puissants
+
+Les tableaux n'existe pas en langage C on parle plutot de liste.
+
+Une liste est une structure de données qui possède un nombres dynamique d'element de type différent ou non ordonnées de façon contigue.
+
+```js
+const notes = [10,12,18,19,15,8];
+
+const names = [
+    "Billy",
+    "Arnaud",
+    "Cléo"
+];
+
+const ages = [24, 25, "8", "Immortel"];
+```
+
+
+On accède au éléments d'une liste via l'opérateur d'indexation.
+
+```js
+const notes = [10, 12, 18, 19, 15, 8];
+
+for(let i = 0;i < notes.length; i++){
+    console.log(notes[i]);
+}
+```
+
+## Fonction usuelles des liste (Array)
+Ils existent en ensembles de fonction des objets Array qui permettent le traitement simplifier des liste.
+
+Ces fonctions sont directement contenu dans l'objet elles sont donc appelées méthodes de l'objet.
+
+> Une fonction contenu dans un objet s'appelle une méthode.
+
+Les méthodes d'objet sont défini dans une structure de donnée appelée classe.
+
+La classe des liste s'appelle Array.
+
+Deux méthodes de classe différentes peuvent avoir le même nom pour ne pas les confondres dans le cours et dans la documention on peut écrire Array.push() pour dire La méthode push de la classe Array.
+
+### push
+Array.push() permet d'ajouter un élement à la fin de la liste.
+https://www.w3schools.com/jsref/jsref_push.asp
+
+### pop
+La fonction pop supprime le dernier élement de la liste.
+
+### splice
+La fonction `Array.splice()` permet de supprimer un ou plusieurs élements à partir d'un index. Correctement utilisée elle permet de supprimer un élément en fonction de son index.
+
+### `forEach`
+
+`forEach` permet de parcourir une liste sans faire de boucle for explicitement grâce à une fonction fléchée.
+
+```js
+const notes = [10,12,18,19,15,8];
+notes.forEach((note)=>{
+    console.log(note);
+})
+```
+Pour chaque élément de la liste la fonction fléchée sera appelée et l'element habituelement nommée `note[i]` sera fournit en paramètre de la fonction callback sous le nom de votre choix. Par convention on lui donne le même nom que la liste au singulier.
+
+D'autres fonctions similaires existent :
+- filter, qui renvoi une nouvelle liste contenant uniquement les éléments pour lesquelles la fonction callback renvoi true : https://www.w3schools.com/jsref/jsref_filter.asp
+- map, renvoi une nouvelle liste fabriqué à partir de la liste d'origine. Par exemple on pourrait utiliser la fonction map pour transformer un tableau de prix de euro à dollars en tapant la formule de convertion EUR -> USD dans la fonction callback. 
 - reduce
 
-# Objet, des struct plus puissance.
+# Les objets, des struct plus puissantes.
 - attribution dynamique d'attributs d'objet
 - Tout est un objet donc les fonction,variable,et tableau sonbt tous des objet.
