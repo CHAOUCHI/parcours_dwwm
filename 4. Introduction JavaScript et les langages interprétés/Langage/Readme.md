@@ -112,6 +112,18 @@ const a = 4;
 a = 30;         // TypeError !
 a = "Salut";    // TypeError ! 
 ```
+
+## Bloc
+
+Une bloc d'instruction est une accolade ouvrante suivie d'une accolade fermante.
+```js
+{
+    let a = 10;
+}
+console.log(a); // ReferenceError : a is not defined
+```
+
+
 # Types primitifs du JavaScript
 Les types du JavaScript sont
 - number : nombres réels NaN inclus (NaN est une valeur spécial qui signifie Not a Number le résultat d'une division par 0 par exemple).
@@ -132,14 +144,15 @@ La stack est la mémoire local à une fonction.
 Lae heap est une mémoire globale au script entier.
 
 # Scope, portée de variable
-Si les variables son déclarées à la racine du script elle sont globales et sont donc contenu dans le *heap*.
 
-Si elles sont déclarées dans un bloc d'accolades alors, comme en C (if,else,for,while,function), elles sont locales.
+- Si une variable est déclarer avec `let` ou `const` elle est loval au bloc soit : les accolades d'un if,else,while,for ou d'une fonction voir même des accolades seules. ***UTILISEZ TOUJOURS `let` OU `const` pour déclarer vos variables.*** Et utilisez `const` de préférence voir éviter les effets de bords.
+- Si une variable est déclaré avec `var`elle est est local à sa fonction ou global si elle est délclarée à la racine du script. A éviter donc , let ou const sont plus strict en rendant les variables local à n'importe quels blocs et pas seulement les fonctions.
 
-> Attention à toujours utiliser `const` ou `let` et jamais `var`. `var` crée des variables globales ce qui est une très mauvaise pratique.
+1. Lisez le cours de la *mdn* et testez les exemples de code
+https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/let
 
 # Fonction callback
-Une fonction callback est une fonction passé en paramètre d'une autre.
+Une fonction callback est une fonction passée en paramètre d'une autre.
 
 ```js
 function hello(prenom){
@@ -170,7 +183,7 @@ welcome("Massinissa",(prenom)=>{
 La fonction hello à été remplacée par une fonction fléchée anonyme.
 
 ## setTimeOut()
-Les fonctions callbakc trouve leurs sens quand on souhaite effectuer une action asyncrone ou "pour plus tard".
+Les fonctions callback trouve leurs sens quand on souhaite effectuer une action asyncrone ou "pour plus tard".
 
 Par exemple la fonction setTimeout permet d'executer une fonction après un certain delai passé en paramètre.
 
@@ -189,26 +202,40 @@ setInterval() fonction de la même façon que setTimeout à la différence que l
 
 1. Codez une horloge en JavaScript qui affiche l'heure à chaque seconde.
 
-# Les Liste, des tableaux plus puissants
+# Les Liste (Array), des tableaux plus puissants
 
-Les tableaux n'existe pas en langage C on parle plutot de liste.
+Les tableaux n'existe pas en JavaScript on parle plutot de liste.
 
-Une liste est une structure de données qui possède un nombres dynamique d'element de type différent ou non ordonnées de façon contigue.
+Une liste ou Array est une structure de données qui possède : 
+- un nombres dynamique d'élément 
+- ces éléments peuvent être de type différent
 
+On dit qu'une liste est l'instance de la classe `Array`.
+
+> Les classes sont des structures de données orientée objet proche des structs C en plus puissantes.
+
+*main.js*
 ```js
+
+// Je déclare une liste vide
+const table = [];
+
+// Je déclare une liste de number
 const notes = [10,12,18,19,15,8];
 
+// Je déclare une liste de string
 const names = [
     "Billy",
     "Arnaud",
     "Cléo"
 ];
 
+// Je déclare une liste de number et de string
 const ages = [24, 25, "8", "Immortel"];
 ```
 
 
-On accède au éléments d'une liste via l'opérateur d'indexation.
+On accède au éléments d'une liste, comme en C, via l'opérateur d'indexation.
 
 ```js
 const notes = [10, 12, 18, 19, 15, 8];
@@ -218,18 +245,32 @@ for(let i = 0;i < notes.length; i++){
 }
 ```
 
+On peut également utiliser la forme raccourci *for of* de la boucle `for`.
+
+```js
+const notes = [10, 12, 18, 19, 15, 8];
+
+for(const note of notes){
+    console.log(note); // note équivaut à notes[i]
+}
+```
+
 ## Fonction usuelles des liste (Array)
-Ils existent en ensembles de fonction des objets Array qui permettent le traitement simplifier des liste.
+Il existe un ensemble de fonctions de la classe `Array` qui permettent le traitement simplifier des liste.
 
 Ces fonctions sont directement contenu dans l'objet elles sont donc appelées méthodes de l'objet.
 
 > Une fonction contenu dans un objet s'appelle une méthode.
 
-Les méthodes d'objet sont défini dans une structure de donnée appelée classe.
+Les méthodes d'objet sont définis dans une structure de donnée appelée classe.
 
-La classe des liste s'appelle Array.
+La classe des listes s'appelle `Array`.
 
 Deux méthodes de classe différentes peuvent avoir le même nom pour ne pas les confondres dans le cours et dans la documention on peut écrire Array.push() pour dire La méthode push de la classe Array.
+
+Vous trouverez toutes les méthodes des listes sur la documention de la classe Array.
+
+1. Consulter la documention de la classe Array : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 ### push
 Array.push() permet d'ajouter un élement à la fin de la liste.
@@ -241,17 +282,80 @@ La fonction pop supprime le dernier élement de la liste.
 ### splice
 La fonction `Array.splice()` permet de supprimer un ou plusieurs élements à partir d'un index. Correctement utilisée elle permet de supprimer un élément en fonction de son index.
 
-### `forEach`
+#### *Exemple de l'utilisation de la fonction Array.splice pour supprimer un élément d'une liste en focntion de son index.*
+```js
+const fruits = ["pomme","cassis","framboise"];
+fruits.splice(0,1);
+console.log(fruits); // [ "cassis","framboise" ]
+```
 
-`forEach` permet de parcourir une liste sans faire de boucle for explicitement grâce à une fonction fléchée.
+## Le prototype de la classe Array
+En JavaScript il est possible d'ajouter des nouvelles fonctions (méthodes) ou variables (attributs) aux objets primitifs du langages.
+
+Cela est possible car la déclaration d'un nouvelle objet en JS se fait par clonage.
+
+*La déclaration d'un objet en JavaScript*
+![La déclaration d'un objet en JavaScript](https://refactoring.guru/images/patterns/content/prototype/prototype-comic-3-en.png?id=ff16dedbd0c10944d27bf87d2adcf8a6)
+
+> https://en.wikipedia.org/wiki/Prototype-based_programming
+> https://refactoring.guru/design-patterns/prototype
+
+Quand je déclare une liste comme ceci :
+```js
+const fruits = [];
+```
+Je fais enfaite un clone d'un objet nommé `Array` et je récupère donc toutes les méthodes de la classe Array par la même occasion.
+
+Pour voir les méthodes et attributs disponible de l'objet je peux afficher sa classe.
+
+Dans la console d'un navigateur web tapez ceci
+```js
+console.log(Array);
+```
+> Attention à bien faire ce console.log dans un navigateur car l'impémentation de console.log de nodejs est moins verbeux que celles des navigateurs web.
+
+1. Parcourez les attributs de cet object jusqu'à voir son prototype : `prototype: Array []`.
+2. Cherchez la fonction `splice` dans le prototype.
+3. Cherchez les méthodes qui permettent de : trier, filtrer, rechercher un élément dans le prototype puis dans la documention de la classe `Array`.
+
+C'est ce prototype qui est cloné quand vous déclarez une liste.
+
+### Ajouter une méthode au prototype (classe).
+ Le JavaScript permet donc de customiser les classe primitives du langage en modifiant le prototype.
+
+*removeIndex.js*
+```js
+/**
+ * Ajout d'une méthode de suppression d'un élément d'une liste par index.
+ */ 
+Array.prototype.removeIndex = function(indexToRemove){
+    this.splice(indexToRemove,1);
+}
+
+const fruits = ["pomme","cassis","framboise"];
+
+fruits.removeIndex(0);
+console.log(fruits); // [ "cassis","framboise" ]
+```
+
+- `this` est une constante qui signifie "lui-même" elle est remplacée par l'adresse de l'instance de la liste à l'execution de la fonction removeIndex. Ici l'instance est la variable fruits.
+- `function(){ }` est une fonction *callback* similaire à une fonction fléchée `()=>{}`. Il est impossible d'utiliser une fonction fléchée ici car il interdit l'utilisation de la constante `this`.
+
+### `forEach` - Parcourir une liste
+
+`forEach` permet de parcourir une liste sans faire de boucle for explicite.
+
+Pour ce faire elle va executer une fonction callback pour chaque tour de la boucle for et fournir l'itérateur (`tableau[i]`) en paramètre de la fonction.
 
 ```js
-const notes = [10,12,18,19,15,8];
+const notes = [10, 12, 18, 19, 15, 8];
+
 notes.forEach((note)=>{
     console.log(note);
-})
+});
 ```
-Pour chaque élément de la liste la fonction fléchée sera appelée et l'element habituelement nommée `note[i]` sera fournit en paramètre de la fonction callback sous le nom de votre choix. Par convention on lui donne le même nom que la liste au singulier.
+
+Pour chaque élément de la liste la fonction fléchée sera appelée et l'élément habituellement nommée `note[i]` sera fournit en paramètre de la fonction callback sous le nom de votre choix. Par convention on lui donne le même nom que la liste au singulier.
 
 D'autres fonctions similaires existent :
 - filter, qui renvoi une nouvelle liste contenant uniquement les éléments pour lesquelles la fonction callback renvoi true : https://www.w3schools.com/jsref/jsref_filter.asp
