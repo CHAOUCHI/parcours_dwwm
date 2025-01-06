@@ -51,4 +51,6 @@ La liste est longue et constitue toutes les APIs disponible dans les navigateur 
 ## Conclusion
 Pour devenir un developpeur JavaScript performant il vous faut apprendre la syntaxe et le fonctionnement du Langage puis un certain nombres d'API coté client (Browser) puis coté serveur (NodeJS).
 
-Cette intorduction vous offira un départ coté back et front avec la création de sites interatifs avec l'API *DOM* (coté client) et d'un serveur web HTTP capable de délivrer ces sites avec l'API *http* de NodeJS.
+Cette intorduction vous offira un départ coté back et front avec :
+- la création de sites interatifs avec l'API *DOM* (coté client) 
+- la création d'un serveur web HTTP capable de délivrer ces sites avec l'API *http* de NodeJS.
