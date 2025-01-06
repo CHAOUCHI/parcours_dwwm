@@ -12,10 +12,10 @@ Un réseau informatique est un ensemble d'ordinateurs et de matériaux de transm
 **Les matériaux de transmissions communs :**
 |||
 |-|-|
-|Le cable de cuivre **RJ45 (cable Ethernet)**|![alt text](images/image-19.png) *Cable Ethernet, permet la transmission filaire de donnée*|
-|Le cable de **fibre optique**. Un cable composé de fibre de verre permettant une transmission de donnée plus rapide que le RJ45.|![alt text](images/image-22.png) *Cable de fibre optique*|
-|**Le switch**. La "multiprise" du réseau, permettant de connecter plusieurs ordinateurs ensembles|![alt text](images/image-20.png) *Switch à 8 ports permettant de connecter jusqu'à 8 ordinateurs les uns aux autres*|
-|**Le router**, qui **connecte un réseau local à un autre réseau**. Par exemple la box internet presente chez vous contient un router qui connecte votre réseau domestique à Internet|![alt text](images/image-21.png)*Livebox de chez Orange contenant, entre-autre, un router connecté à Internet*|
+|Le cable de cuivre **RJ45 (cable Ethernet)**|![alt text](../../images/image-19.png) *Cable Ethernet, permet la transmission filaire de donnée*|
+|Le cable de **fibre optique**. Un cable composé de fibre de verre permettant une transmission de donnée plus rapide que le RJ45.|![alt text](../../images/image-22.png) *Cable de fibre optique*|
+|**Le switch**. La "multiprise" du réseau, permettant de connecter plusieurs ordinateurs ensembles|![alt text](../../images/image-20.png) *Switch à 8 ports permettant de connecter jusqu'à 8 ordinateurs les uns aux autres*|
+|**Le router**, qui **connecte un réseau local à un autre réseau**. Par exemple la box internet presente chez vous contient un router qui connecte votre réseau domestique à Internet|![alt text](../../images/image-21.png)*Livebox de chez Orange contenant, entre-autre, un router connecté à Internet*|
 
 ### Internet, qu’est-ce-que c’est ?
 Internet, c’est l’ensemble des ordinateurs (hotes) et matériels de réseau connectés les uns aux autres à travers le monde grâce au fournisseurs d’accès internet (FAI). Les matériels de réseaux sont les routeurs comme votre box internet mais également les switchs, les NAT, les serveurs, les cables.
@@ -36,7 +36,7 @@ Comprenez bien que c’est le routeur qui relie les LAN et MAN à internet.
 ### Les MAN
 Les MAN (Metropolitan Area Network) quant à eux vont plutôt recouvrir une ville ou un grand campus universitaire. Chacun de ces MAN et LAN sont reliés à des points de mutualisations(PM) mis en place par un FAI. Ce sont dans ces PM que les techniciens Orange ou SFR viennent connectés votre ligne lorsque vous souscrivez à un abonnement internet chez une FAI.
 
-![alt text](images/image-23.png)
+![alt text](../../images/image-23.png)
 *Point de mutualisation d’un FAI présent dans la rue.*
 
 #### Le voyage d’un message:
@@ -46,7 +46,7 @@ Imaginons qu’un ordinateur d’un LAN A souhaite envoyer un message vers le se
 3. Le FAI amène le message vers un LAN B.
 4. Le LAN B amène le message vers le serveur demandé par l’ordinateur du LAN A.
 
-![alt text](images/image-24.png)
+![alt text](../../images/image-24.png)
 *Transfert d’un message par internet*
 
 >Le chemin exact parcouru par le message entre le PM du LAN A et le PM du LAN B est inconnu car personne ne peux décrire précisément toutes les branches d’internet **voilà pourquoi on appel cela le nuage d’internet ou « cloud ».**
@@ -152,7 +152,7 @@ Voici quelque exemples d’autre protocole de communication :
 - SSH ou Secure Shell : est un protocole qui permet d’envoyer des commandes à distances à un système d’exploitation Linux. En d’autre termes grâce à ce protocole plus besoin d’être en présence de l’ordinateur pour le contrôler. Ce protocole est obligatoire dans l’administration de serveur car ces dernier sont souvent éloignés des administrateurs et ne possèdes ni clavier, ni écran avec lesquelles interagir.
 
 ##### Structure d’une requête HTTP
-![alt text](images/image-25.png)
+![alt text](../../images/image-25.png)
 > Voir la documentation RFC du protocole HTTP décrivant précisément le fonctionnement du protocole : https://datatracker.ietf.org/doc/html/rfc2616
 
 #### Modèle OSI et Modèle TCP/IP
@@ -163,10 +163,10 @@ Il existe deux modèles hiérachiques de représentation des protocoles :
 - Le modèle OSI qui décrit tout les protocole informatique possible, leurs rôles et leurs places dans l'encapsulation.
 - Le modèle TCP/IP qui est un modèle moins exostif se concentrant sur tout les protocoles basé sur le protocole TCP encapsulé dans IP.
 
-![alt text](images/image-26.png)
+![alt text](../../images/image-26.png)
 *Le modèle OSI*
 
-![alt text](images/image-27.png)
+![alt text](../../images/image-27.png)
 *Le modèle TCP/IP à droite*
 
 Pour un developpeur il est plus important de connaitre le modèle TCP/IP que le modèle OSI car la plupart des applications développées aujourd'hui utilises les protocoles TCP et IP pour fonctionner.

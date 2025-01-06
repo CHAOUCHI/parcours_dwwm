@@ -22,7 +22,7 @@ La création d'un programme se fait en 3 étapes :
 
 > L'éxectuable fabriqué par le compilateur est également appelé programme ou logiciel. Chrome, Steam, Skype et l'explorateur de fichier Windows sont tous des programmes. Et comme tout programme ils ont tous été compilés par un compilateur.
 
-![alt text](images/image-18.png)
+![alt text](../../images/image-18.png)
 
 En fonction de notre système d'exploitation l'installation d'un compilateur et l'éxécution d'un programme diffère.
 
