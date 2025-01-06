@@ -496,3 +496,4 @@ En utilisant la documentation du module mysql :
 
 1. Apprenez à faire des requêtes SQL en JS.
 2. Mettez en place la persistance des données dans votre back-end todolist.
+
