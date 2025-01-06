@@ -2,9 +2,9 @@
 ## Activité - Comment compiler son premier programme ?
 
 ### Pré-requis
-Je recommande de coder en C sous linux car la plupart des logiciels codé en C tourne sous Linux ou dans un environnement UNIX.
+Je recommande de coder en C sous linux car la plupart des logiciels codés en C tourne sous Linux ou dans un environnement UNIX.
 
-Il est également important pour vous de vous familirisez le plus tot possible avec les commandes Linux pour ne pas être handicapé plus tard lors de la conception de vértiable logiciel.
+Il est également important pour vous de vous familirisez le plus tôt possible avec les commandes Linux pour ne pas être handicapé plus tard lors de la conception de vértiable logiciel.
 
 Il existe plusieurs moyens d'être sous Linux sans abandonner Windows : 
 - Le dual-boot, installer deux OS sur le même PC.
@@ -13,7 +13,7 @@ Il existe plusieurs moyens d'être sous Linux sans abandonner Windows :
 
 Si vous n'etes pas sous linux veuillez consulter l'activité sur les machines virtuel pour mêttre en place une VM Debian.
 
-### Ecrire le le code source.
+### Ecrire le code source.
 
 Pour compiler un programme il faut d'abord l'écrire dans un fichier texte en respectant la syntaxe d'un langage de programmation.
 

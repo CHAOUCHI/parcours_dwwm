@@ -1,0 +1,12 @@
+.pokemon_detail .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pokemon_detail>.card>.pokemon_image{
+    height: 350px;
+}
+.pokemon_detail .types>img{
+    height: 50px;
+}

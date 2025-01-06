@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(52, 18, 71);
+            color : white;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 20px;
+            font-weight: bold;
+            gap :10px;
+        }
+        canvas{
+            border : black 1px solid;
+        }
+        #logo{
+            width : 200px;
+        }
+        .game_ui{
+            display: flex;
+            gap : 5px;
+            align-items: center;
+            justify-content: center;
+        }
+        .alien_icon{
+            height : 30px;
+        }
+    </style>
+</head>
+<body>
+    <img src="./public/images/logo.png" alt="Logo earth defender" id="logo">
+    <div class="game_ui">
+        <span class="remain_alien">[nbAlienRestant]/[nbAlien]</span>
+        <img src="./public/images/Alien.png" class="alien_icon">
+        <span class="earth_pv">[earth_pv]</span><img src="./public/images/Heart.png" alt="PV">
+    </div>
+        
+    <div hidden>
+        <!-- Assets -->
+        <img src="./public/images/Alien.png" alt="" id="asset_alien" hidden>
+        <img src="./public/images/DefaultGameObject.png" alt="" id="asset_default" hidden>
+        <img src="./public/images/Laser.png" alt="" id="asset_laser" hidden>
+        <img src="./public/images/Player.png" alt="" id="asset_player" hidden>
+        <img src="./public/images/Star.png" alt="" id="asset_star" hidden>
+        <img src="./public/images/Earth.png" alt="" id="asset_earth" hidden>
+        <img src="./public/images/Pomme.png" alt="" id="asset_pomme" hidden>
+        <!-- Audio  -->
+        <audio src="./public/audio/laser.mp3" id="audio_laser">Le bruitage du laser est introuvable.</audio>
+    </div>
+    <audio src="./public/audio/bg_music.mp3" autoplay controls loop >La musique de fond est introuvable.</audio>
+
+    <canvas height="500" width="900">
+
+    </canvas>
+</body>
+<script type="module" src="./build/script.js"></script>
+</html>

@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "rootDir": "./src",
+        "outDir": "./build",
+        "experimentalDecorators": true
+    },
+}

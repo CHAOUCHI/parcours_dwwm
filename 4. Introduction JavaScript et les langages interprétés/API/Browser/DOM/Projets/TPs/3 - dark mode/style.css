@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.4rem;
+    font-family: arial;
+    color:rgb(43, 43, 43);
+}
+body.darkmode{
+    color:white;
+}
+section{
+    height: 100vh;
+    background-color: rgb(160, 218, 233);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+section.darkmode{
+    background-color: rgb(34, 23, 39);
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.switch{
+    position: relative;
+    width: 100px;
+    height: 30px;
+    background-color: rgb(125, 155, 221);
+    border-radius: 15px;
+}
+.switch.darkmode{
+    background-color: rgb(39, 39, 39);
+}
+.icon{
+    color :gold;
+    position: absolute;
+    top :8px;
+    left:40px;
+    transition: translate 0.5s;
+
+}
+.btn{
+    height:30px;
+    width:30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    position: absolute;
+    transition: translate 0.5s;
+}
+.btn.darkmode{
+    translate: 70px;
+}
+.icon.darkmode{
+    translate: 10px;
+}
+
+
+.titre-article{
+    padding: 2rem;
+    color :rgb(48, 48, 48);
+    background-color: rgb(193, 215, 235);
+}
+.titre-article.darkmode{
+    color:rgb(231, 228, 228);
+    background-color: rgb(26, 8, 70);
+}

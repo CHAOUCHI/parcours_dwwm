@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+section{
+    min-height: 100vh;
+    padding-top:10rem;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+}
+#todo-list{
+    height: min-content;
+}
+body{
+    font-size: 1.4rem;
+    font-family: arial;
+    color:white;
+}
+#todo-list{
+    width:80%;
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+}
+#form{
+    display: flex;
+    gap:0.2rem;
+}
+button{
+    border:none;
+    width:4rem;
+    height:4rem;
+    background-color: rgb(212, 212, 212);
+}
+button:active{
+    scale:0.98;
+}
+#todo{
+    width:100%;
+    border:none;
+    padding:1rem;
+    border-bottom:1px dashed grey;
+}
+.task{
+    display: flex;
+    align-items: center;
+    background-color: rgb(212, 212, 212);
+    padding-left:1rem;
+    margin:1rem;
+}
+.task p{
+    flex:1;
+    font-size: 2rem;
+    color:rgb(42, 42, 42);
+}
+.task button{
+    margin:1rem;
+}
+.btn-delete{
+    background-color: rgb(204, 40, 40);
+}
+.btn-archive{
+    background-color: rgb(56, 147, 56);
+}
+.done{
+    text-decoration: line-through;
+    color:black;
+}

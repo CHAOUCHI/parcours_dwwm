@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 5.4rem;
+    font-family: arial;
+    color:white;
+    background-color: grey;
+    user-select: none;
+}
+.ball{
+    height: 50px;
+    width:50px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    animation-name:ball;
+    animation-duration:5s;
+    animation-iteration-count:infinite;
+}
+#blue-ball{
+    background-color: blue;
+}
+
+#red-ball{
+    background-color: red;
+    animation-duration:3s;
+}
+.ball:active{
+    transform: scale(0.75);
+    transition: 0.1s;
+}
+@keyframes ball{
+    0%{top:0px;left: 0px;}
+    25%{top:0px;left: 200px;}
+    50%{top:200px;left: 200px;}
+    75%{top:200px;left: 0px;}
+    100%{top:0px;left: 0px;}
+}

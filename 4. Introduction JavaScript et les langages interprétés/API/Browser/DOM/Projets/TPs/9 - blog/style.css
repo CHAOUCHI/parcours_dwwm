@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+section{
+    height: 100vh;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+body{
+    font-size: 1.4rem;
+    font-family: arial;
+    color:white;
+}
+.banniere-titre h1{
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+.posts{
+    width: 80%;
+    background-color: blanchedalmond;
+    padding: 3rem;
+}
+.post{
+    margin:1rem 0;
+}
+.post-titre{
+    font-size: 3rem;
+}
+.post-titre a{
+    color:orange;
+}
+.post-extrait{
+    color:rgb(39, 39, 39);
+}
+.post-hashtag{
+    color:grey;
+}

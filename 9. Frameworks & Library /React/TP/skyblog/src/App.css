@@ -1,0 +1,16 @@
+body{
+    margin: 0px;
+}
+
+.app{
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    background-color: rgb(72, 136, 209);
+}

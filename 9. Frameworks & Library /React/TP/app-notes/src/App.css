@@ -1,0 +1,17 @@
+.app {
+    display: flex;
+    flex-direction: row;
+}
+
+.listNotes {
+    width: 50%;
+}
+
+.addNote {
+    width: 50%;
+}
+
+.newNote {
+    display: flex;
+    flex-direction: column;
+}

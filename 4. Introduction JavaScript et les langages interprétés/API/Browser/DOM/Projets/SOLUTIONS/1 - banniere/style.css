@@ -1,0 +1,61 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+section{
+    height: 100vh;
+    background-color: rgb(196, 160, 45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body{
+    font-size: 1.4rem;
+    font-family: arial;
+    color:white;
+}
+/*
+Banniere cookies
+*/
+.cookies{
+    padding: 3rem;
+    background-color: rgb(42, 43, 43);
+    width: 100%;
+
+    position:fixed;
+    bottom:0px;
+
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    opacity: 1;
+    transition:1s;
+}
+.cookies-texte{
+    padding: 1rem;
+}
+.cookies-btn{
+    display: flex;
+    width: 33%;
+}
+.btn{
+    color:white;
+    border:none;
+    padding:1rem;
+    border-radius: 1rem;
+    transition: transform 0.1s;
+}
+.btn:active{
+    transform: scale(0.95);
+}
+.btn-accept{
+    background-color: rgb(34, 34, 34);
+}
+.btn-deny{
+    background-color: rgba(34, 34, 34,0);
+}

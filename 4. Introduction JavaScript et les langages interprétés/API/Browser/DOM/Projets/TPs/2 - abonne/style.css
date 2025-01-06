@@ -1,0 +1,62 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+section{
+    height: 100vh;
+    background-color: rgb(240, 75, 75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body{
+    font-size: 1.4rem;
+    font-family: arial;
+    color:white;
+}
+h2{
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+iframe{
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.397);
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+/*************** Bouton abonnez-vous ************/
+.bloc-btn{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.btn-sub{
+    border:none;
+    padding: 1rem;
+    color: black;
+    background-color: rgb(231, 231, 231);
+    width:20ch;
+    transition:width 0.1s;
+}
+.abonne{
+    
+    width:15ch;
+    background-color: rgb(139, 30, 30);
+    color:white;
+}
+/***********************************************/
+
+/******************* Icone like ****************/
+#icone{
+    transition: color 0.5s;
+}
+.happy{
+    color:gold;
+}
+/***********************************************/

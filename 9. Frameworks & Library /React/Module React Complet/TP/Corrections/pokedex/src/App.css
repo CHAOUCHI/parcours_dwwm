@@ -1,0 +1,19 @@
+
+body{
+    background-color: #EF3E3E;
+    color : white;
+    font-family: sans-serif;
+}
+
+.app{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap : 100px;
+    height: 100vh;
+}
+
+.col-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
