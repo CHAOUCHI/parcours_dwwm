@@ -8,17 +8,15 @@ La programmation, c'est l'action de créer un programme exécutable par un ordin
 
 Avec le temps, les ordinateurs devinrent de plus en plus puissants et il a été possible d'écrire des programmes directement depuis un ordinateur avec un clavier et un écran qui affiche des caractères.
 
-Le binaire étant particulièrement long et compliqué pour la rédaction d'un programme, il nous fallait une abstraction compréhensible par les humains.
+Le binaire étant particulièrement long pour la rédaction d'un programme, il nous fallait une abstraction compréhensible par les humains.
 
 On a donc inventé les langages assembleurs qui représentent chaque instruction binaire de l'ordinateur par un mot.
 
-Aujourd'hui, plus personne ne code en assembleur. On préfère utiliser des langages plus proches de l'humain.
+Aujourd'hui, presque plus personne ne code en assembleur. On préfère utiliser des langages plus proches de l'Homme.
 
 Un langage proche de l'anglais qui nous permet d'allouer de la mémoire, faire des calculs, lire des entrées (clavier, carte réseau, ...) et écrire sur des sorties (écran, carte réseau, ...) sans pour autant connaître le fonctionnement du processeur.
 
 On appelle ce langage un langage de programmation et son plus éminent représentant est le **langage C**, le langage à la base de tous les systèmes d'exploitation modernes et de la plupart des programmes qui forment la colonne vertébrale de l'informatique moderne.
-
----
 
 ### La création d'un programme - "coder"
 
@@ -35,8 +33,6 @@ En fonction de notre système d'exploitation, l'installation d'un compilateur et
 
 Même si la majorité des utilisateurs d'ordinateurs utilisent Windows, aujourd'hui la plupart des programmes sont exécutés sur des serveurs Linux. La connaissance des commandes et du système Linux est une compétence qu'un étudiant doit aborder le plus tôt possible.
 
----
-
 ### L'algorithmie ou comment concevoir un programme ?
 
 L'algorithmie est un domaine des mathématiques qui consiste à définir, via des règles non ambiguës, une procédure permettant de résoudre un problème.
@@ -44,8 +40,6 @@ L'algorithmie est un domaine des mathématiques qui consiste à définir, via de
 Programmer, c’est définir un plan composé d’instructions que l’on exécute les unes après les autres. Parfois, le plan peut contenir plusieurs branches de possibilités dépendantes de conditions : « Y a-t-il des bouchons sur l’autoroute ? Si oui, prenons la nationale pendant 20 kilomètres, sinon prenons l’autoroute ». Ce plan est appelé un algorithme.
 
 Un algorithme est composé de différentes briques élémentaires qui permettent la résolution de problèmes.
-
----
 
 ### Briques élémentaires d'un algorithme
 
