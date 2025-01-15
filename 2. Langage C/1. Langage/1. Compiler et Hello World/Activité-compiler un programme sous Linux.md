@@ -102,8 +102,8 @@ Parmis les types variables les plus classique ont retrouve.
 
 |type|syntaxe en C|taille en mémoire|
 |-|-|-|
-|integer|*int age = 24;*|2 octets|
-|float|*float taille = 1.70;*|4 octets|
+|integer|*int age = 24;*|4 octets|
+|float|*float taille = 1.70;*|8 octets|
 |character|*char lettre = 'h';*|1 octet|
 |chaine de caractère|*char\* mot = "hello";*|1octet * le nombre de caractère (4 octets pour la chaine *hello* par exemple)|
 
