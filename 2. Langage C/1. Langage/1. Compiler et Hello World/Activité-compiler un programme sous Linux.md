@@ -261,4 +261,32 @@ Ecrivez un programme,
 
 
 #### Activité Question pour un champion
-Consigne : Avec l'aide de scanf() et printf() essayez de coder un mini-jeu "Question pour champion !" ! 
+Consigne : Avec l'aide de scanf() et printf() codez un mini-jeu "Question pour champion !" ! 
+
+Voici un code source à compléter.
+
+```c
+#include <stdio.h>
+
+int main(){
+    // Je déclare quelque variables.
+    printf("Bienvenue dans question pour un champion !\n");
+
+    printf("Quel est la couleur du cheval blanc d'henri 4 ?\n");
+
+    printf("1. Rouge.\n2. Blanc\n");
+    int reponse = 0;
+    scanf("%d",&reponse);
+    if(reponse == 2){
+        printf("Bonne réponse !\n");
+    }else{
+        printf("Faux !\n");
+    }
+
+    // Continuez... et ajoutez une dizaine de questions !
+    // ...    
+
+    printf("Au revoir.\n");
+    return 0;
+}
+```
