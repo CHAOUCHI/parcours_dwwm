@@ -284,7 +284,7 @@ int main(){
     }
 
     // Continuez... et ajoutez une dizaine de questions !
-    // ...    
+    // ... 
 
     printf("Au revoir.\n");
     return 0;
