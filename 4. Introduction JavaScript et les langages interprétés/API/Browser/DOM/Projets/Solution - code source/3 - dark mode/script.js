@@ -8,12 +8,3 @@ switchBtn.addEventListener("click",function(){
         tag.classList.toggle("darkmode");
     })
 });
-
-
-// function ForEach(funct){
-   
-//     for (let index = 0; index < allTags.length; index++) {
-//         const tag = allTags[index];
-//         funct(tag);
-//     }
-// }
