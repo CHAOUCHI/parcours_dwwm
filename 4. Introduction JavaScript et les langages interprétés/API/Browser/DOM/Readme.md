@@ -17,3 +17,21 @@ Il vous faut un serveur web pour votre site web ainsi que au minimum les deux fi
 - script.js
 
 >N'oubliez pas d'inclue le fichier JS dans le fichier HTML avec la balise `<script>`.
+
+
+## Les Projets
+
+Une fois les activités théroiques finies, vous aurez compris les principales spécifités du JavaScript.
+
+Il est temps de réaliser des projets. **Dans le dossier Projets vous en trouverez une dizaine, faite les dans l'ordre**.
+
+
+Pour avoir un aperçu des projets vous pouvez naviguer dans les cours et les projet en lançant un server http python après avoir cloner le répo.
+
+
+```bash
+git clone https://github.com/CHAOUCHI/parcours_dwwm/
+cd parcours_dwwm
+cd 4.\ Introduction\ JavaScript\ et\ les\ langages\ interprétés/API/Browser/DOM/Projets/
+python3 -m http.server
+```
