@@ -24,6 +24,8 @@ function onSubmitAddTask(e){
 
     listTasks.innerHTML += task;
 
+    
+
     const btnsSupprimer = document.querySelectorAll(".btn-delete");
     btnsSupprimer.forEach((btn)=>{
         btn.addEventListener("click",function(){
