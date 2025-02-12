@@ -32,14 +32,14 @@ Par défaut l'évenement `submit` demande au navigateur d'envoyer le contenu du 
 
 Si vous voulez vérifiez les champs du formulaire en JavaScript avant d'envoyer un message au serveur il faut désactiver le comportement par default de l'évenement grâce à la fonction `preventDefault()`.
 
-### Récupérer les valeurs du formulaire à partir de l'event
+### Récupérer les valeurs du formulaire à partir de FormData
 Dans le code suivant j'utilise l'objet event et la classe FormData pour former un objet facile à utiliser contenant comme attributs les `value` des balises `<input>`.
 
 > Le nom des attributs est défini par l'attribut HTML `name` des balises `<input>`.
 
 ```js
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +58,8 @@ Dans le code suivant j'utilise l'objet event et la classe FormData pour former u
 
     form.addEventListener("submit",event=>{
         event.preventDefault();
-        const formData = new FormData(event.target);
+
+        const formData = new FormData(form);
         console.log(formData.mail);
         console.log(formData.nom);
         console.log(formData);
@@ -68,11 +69,22 @@ Dans le code suivant j'utilise l'objet event et la classe FormData pour former u
 ```
 
 ### Améliorer la structure
-Notez que je pourrais me servir de la variable global `form` plutot que de `event.target` mais je préfère rendre mon code le moins dépendant possible de variables globales pour pouvoir facilement encapsuler cette fonction anonyme dans un fonction bien défini et améliorer la structure et la lisibilité du code.
+
+L'attribut event.target est un pointeur sur la balise qui à subit l'event, ici le formulaire.
+
+On peut donc dire que :
+
+```js
+form === event.target // true
+```
+
+Notez que je me sers de la variable globale `form` plutôt que de `event.target`. Je préfère rendre mon code le moins dépendant possible des variables globales pour pouvoir facilement encapsuler cette fonction anonyme dans un fonction bien défini et améliorer la structure et la lisibilité du code.
+
+Je le fais comme ceci :
 
 ```js
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
