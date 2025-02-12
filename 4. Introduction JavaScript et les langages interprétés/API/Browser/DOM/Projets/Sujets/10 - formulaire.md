@@ -58,7 +58,7 @@ Dans le code suivant j'utilise l'objet event et la classe FormData pour former u
 
     form.addEventListener("submit",event=>{
         event.preventDefault();
-        const formData = new FormData(form);
+        const formData = new FormData(event.target);
         console.log(formData.mail);
         console.log(formData.nom);
         console.log(formData);
@@ -94,10 +94,10 @@ Notez que je pourrais me servir de la variable global `form` plutot que de `even
 
     function onLogin(event){
         event.preventDefault();
-        const formData = new FormData(form);
-        console.log(formData.mail);
-        console.log(formData.nom);
+        const formData = new FormData(event.target);
         console.log(formData);
+        console.log(formData.get("mail"));
+        console.log(formData.get("nom"));
 
         // Ici je pourrais par exemple faire une requête HTTP pour demander un jeton d'authentification à mon serveur avec la fonction fetch().
 

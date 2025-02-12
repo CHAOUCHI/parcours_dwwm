@@ -4,7 +4,7 @@ import { Input } from "./Input.js";
 import { Player } from "./GameObjects/Player.js";
 import { Star } from "./GameObjects/Star.js";
 import { Earth } from "./GameObjects/Earth.js";
-import {Pomme} from "./GameObjects/Pomme.js";
+
 export class Game{
     /**
      * --ATTRIBUTS ----------------------------------
@@ -73,7 +73,7 @@ export class Game{
         // Démarre la boucle de jeu
         this.gameLoop();
     }
-
+    
     /**
      * Ajoute un gameobject dans le tableau de gameobject.
      * Le tableau est parcouru dans la gameloop tout les 10ms et les gameobjects sont affiché dans l'ordre d'ajout.
