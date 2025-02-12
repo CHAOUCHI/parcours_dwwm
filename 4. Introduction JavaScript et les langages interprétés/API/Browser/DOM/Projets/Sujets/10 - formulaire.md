@@ -32,6 +32,40 @@ Par défaut l'évenement `submit` demande au navigateur d'envoyer le contenu du 
 
 Si vous voulez vérifiez les champs du formulaire en JavaScript avant d'envoyer un message au serveur il faut désactiver le comportement par default de l'évenement grâce à la fonction `preventDefault()`.
 
+### Récupérer les valeurs du formulaire à partir de l'event
+Dans le code suivant j'utilise l'objet event et la classe FormData pour former un objet facile à utiliser contenant comme attributs les `value` des balises `<input>`.
+
+> Le nom des attributs est défini par l'attribut HTML name des balises input.
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="email" name="mail" id="">
+        <input type="text" name="nom" id="">
+        <button type="submit">submit</button>
+    </form>
+</body>
+<script>
+    let e = null;
+    const form = document.querySelector("form");
+    form.addEventListener("submit",event=>{
+        event.preventDefault();
+        const formData = new FormData(form);
+        console.log(formData.mail);
+        console.log(formData.nom);
+        console.log(formData);
+    });
+</script>
+</html>
+```
+
 # Cahier des charges
 |Tâches| Description | Contraintes |
 |---|---|---|

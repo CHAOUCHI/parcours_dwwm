@@ -7,3 +7,4 @@ Faite un pokedex en HTML/CSS/JavaScript. Utiliser l'api fetch
 Le cours sur Les promises.
 
 ## Cahier des charges
+
