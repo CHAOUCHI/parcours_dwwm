@@ -35,7 +35,7 @@ Si vous voulez vérifiez les champs du formulaire en JavaScript avant d'envoyer 
 ### Récupérer les valeurs du formulaire à partir de l'event
 Dans le code suivant j'utilise l'objet event et la classe FormData pour former un objet facile à utiliser contenant comme attributs les `value` des balises `<input>`.
 
-> Le nom des attributs est défini par l'attribut HTML name des balises input.
+> Le nom des attributs est défini par l'attribut HTML `name` des balises `<input>`.
 
 ```js
 <!DOCTYPE html>
@@ -53,8 +53,9 @@ Dans le code suivant j'utilise l'objet event et la classe FormData pour former u
     </form>
 </body>
 <script>
-    let e = null;
+
     const form = document.querySelector("form");
+
     form.addEventListener("submit",event=>{
         event.preventDefault();
         const formData = new FormData(form);
@@ -62,6 +63,45 @@ Dans le code suivant j'utilise l'objet event et la classe FormData pour former u
         console.log(formData.nom);
         console.log(formData);
     });
+</script>
+</html>
+```
+
+### Améliorer la structure
+Notez que je pourrais me servir de la variable global `form` plutot que de `event.target` mais je préfère rendre mon code le moins dépendant possible de variables globales pour pouvoir facilement encapsuler cette fonction anonyme dans un fonction bien défini et améliorer la structure et la lisibilité du code.
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="email" name="mail" id="">
+        <input type="text" name="nom" id="">
+        <button type="submit">submit</button>
+    </form>
+</body>
+<script>
+
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit",onLogin);
+
+
+    function onLogin(event){
+        event.preventDefault();
+        const formData = new FormData(form);
+        console.log(formData.mail);
+        console.log(formData.nom);
+        console.log(formData);
+
+        // Ici je pourrais par exemple faire une requête HTTP pour demander un jeton d'authentification à mon serveur avec la fonction fetch().
+
+    }
 </script>
 </html>
 ```
