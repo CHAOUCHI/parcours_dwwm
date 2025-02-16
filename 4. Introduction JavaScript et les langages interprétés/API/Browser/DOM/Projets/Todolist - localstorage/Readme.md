@@ -27,18 +27,22 @@ https://www.figma.com/proto/e4qUHkuVIG9kX9MaqR6tJW/Untitled?node-id=101-10&t=t8V
 
 ## Cahier des charges
 
+L'application est une Single Page Application (SPA), c'est à dire qu'elle ne possède qu'une page `index.html` c'est grâce à votre maitrise du DOM que vous allez pouvoir modifier l'affichage :) .
+
 |Taches|Description|Cas critique|
 |-|-|-|
 |Formulaire d'ajout de tâche| Une tâche est faite d'un titre, d'une description, d'une case cochable pour valider la tâche et d'un bouton supprimé et d'une date de création | Les tâches ajoutés doivent être stockées dans le localStorage sous la forme d'un tableau JSON pour permettre aux tâches d'être sauvegarder |
 | Afficher les tâches| Afficher toutes les tâches contenu dans le localStorage| Affichage des tâches au chargement de la page et mise à jour des taches quand une tâche est ajoutés|
 | Version mobile| La version mobile est prioritaire et doit être faite en premier |
 | UX |  - Le formulaire d'ajout apparait en slide in comme dans le proto figma <br> - Le bouton ajouter doit toujours être visible |
-| Tache Fini| Si l'utilisateur valide une tache ses changement doivent être répércuté dans le localStorage |
+| Valider une tache| Si l'utilisateur valide une tache ses changement doivent être répercuté dans le localStorage |
 | Barre de recherche | Ajouter une barre de recherche pour afficher uniquement les tâches qui contiennent le texte tapé |
 | Trier par date | L'utilisateur doit pouvoir trier dans de la tâches la plus vieille à la plus récente et inversement |
-| Tache corbeille| 
-| Epingler une tache |
-| Trie par # Tag |
+| (BONUS)Epingler une tache | Ajouter un icone épingle sur chaque tache pour les fiare apparaitre en haut de la page par défaut et les mettre en avant | Il faut pouvoir épingler et désépingler une tâche |
+| (BONUS)Trie par # Tag | Chaque tache peut avoir un ou plusieurs hashtag lors de la création. Il faut pouvoir trier les tâches par hashtag comme sur youtube |  |
+
+*Exemple de hashtag*
+![alt text](image-2.png)
 
 **LISEZ L'ANNEXE !!!**
 
