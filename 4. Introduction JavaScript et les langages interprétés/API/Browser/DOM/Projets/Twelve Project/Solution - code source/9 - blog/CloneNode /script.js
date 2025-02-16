@@ -30,23 +30,28 @@ const posts =
     }
 ];
 
+const postTemplate = document.querySelector("#post_template");
+
+
 // 3. Je parcours la bdd
 posts.forEach(function(post){
     // 4. Je créer un nouveau post dans le conteneur de post pour chaque post de la BDD
-    const postElement = `
-        <div class="post">
-            <div class="post-titre">
-                <a href="${post.link}">${post.titre}</a>
-            </div>
-            <div class="post-extrait">
-                ${post.extrait}
-            </div>
-            <div class="post-hashtag">
-                ${post.hashtag}
-            </div>
-        </div>
-    `;
+    const postElement = postTemplate.content.cloneNode(true);
+
+    // Remplir le titre
+    const titleLinkTag = postElement.querySelector(".post-titre>a");
+    titleLinkTag.textContent = post.titre;
+    titleLinkTag.setAttribute("href",post.link);
+
+    // Remplir l'extrait
+    const extraitTag = postElement.querySelector(".post-extrait");
+    extraitTag.textContent = post.extrait;
+
+    // Remplir les hashtag
+    const hashtagTag = postElement.querySelector(".post-hashtag");
+    hashtagTag.textContent = post.hashtag;
+
     // 5. Je l'ajoute dans le conteneur de publication
-    postsContainer.innerHTML+=postElement;
+    postsContainer.appendChild(postElement)
 
 });
