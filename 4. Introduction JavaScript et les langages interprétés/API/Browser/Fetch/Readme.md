@@ -3,6 +3,18 @@ Pré-requis : https://developer.mozilla.org/fr/docs/Web/HTTP/Overview#les_messag
 ## I - Qu'est ce que c'est ?
 L'*API Fetch* est un client HTTP utilisable en JavaScript. Au même titre que les objets : `console`, `document` ou `localStorage` l'*API Fetch* est accesible via l'objet window. 
 
+## II - Résumé de `fetch`
+Le code suivant affiche le nom des 10 premiers pokémons dans la console.
+```js
+fetch("https://pokebuildapi.fr/api/v1/pokemon/limit/10")
+.then(response=>response.json())
+.then(pokemons=>{
+	pokemons.forEach(pokemon=>{
+		console.log(pokemon.name);
+	});
+});
+```
+
 **L'API Fetch est utilisable via la méthode `window.fetch`.**
 ```js
 fetch(url : string,options : Object) : Promise<Response> 
@@ -26,19 +38,7 @@ Toutes ces opérations neccessites l'envoi d'une requête HTTP à un serveur, ma
 >PHP s'execute sur le serveur et génère le HTML coté serveur, le navigateur devait donc recharger toute la page afficher les nouvelles données. Ce qui rendait la navigation sur le web bien moins fluide que sur des applications mobile ou bureau.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-## III - La méthode fetch
+## III - La méthode fetch en détail
 La méthode `fetch` de l'objet `window` renvoi un objet de la classe `Promise` fournissant une réponse HTTP, soit : "une promesse de réponse HTTP". Elle prend en paramètre obligatoire l'url du serveur (`string`) vers lequel effectuer la requête HTTP.
 
 **Défintion de la fonction**
@@ -74,10 +74,15 @@ Un objet JavaScript possédant de nombreux attributs optionnelles, les plus util
 
 **Exemple : Ajouter un produit**
 Nous voulons rajouter un produit à une base de donnée en utilisant la route `POST /product` d'une api rest, le produit à rajouter est contenu dans le body de la requête HTTP.
+
+Il est d'usage que les serveur demande au client de définir la méthode d'envoi comme POST. Dans les fin ça ne change pas grand chose à l'envoi mais la plupart des serveur (Y compris ce que vous allez conçevoir) vous demanderont de préciser la méthode pour leurs simplifier le travail.
+
+Par exemple la route `GET` /product peut envoyer toutes les produits alors que `POST` /product sert à ajouter un nouveau produit.
+
 ```js
  let newProduct = JSON.stringify({name : "Adidias taille 42" , price : 99});   // Je transforme un produit en string JSON
  fetch("localhost/product",{
-    method : "POST",        // Par défaut GET, donc je précise POST
+    method : "POST",        // Par défaut fetch fait un GET, donc je précise POST
     body : newProduct 
 })
 .then((reponseHTTP)=>reponseHTTP.json())
@@ -419,7 +424,7 @@ La méthode `response.text()` fonctionne comme `response.json()` à la différen
 Cela permet de récupérer le texte brut de la réponse.
 
 
-# Idée de projet pour apprendre fetch
+## Idée de projet pour apprendre fetch
 - Créer un pokedex à partir des données de l'api rest Pokebuild.
 - Si vous connaissez un langage back-end comme PHP, créer une boutique ecommerce ou un blog avec un back-end PHP(API REST JSON) et un front-end JavaScript.
 - Créer une application météo à partir de l'api rest OpenMeteo et l'api Geolocation de JavaScript.
