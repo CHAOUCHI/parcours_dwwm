@@ -1,9 +1,8 @@
 # Catinder
 
-Une application web qui permet de rencontrer des chats de t'as région.
+Une application web qui permet de rencontrer des chats de ta région.
 
-Like ou passe un chat et si tu as de la chance tu va peut être matcher avec l'animal de compagnie de t'as vie ! 
-
+Like ou passe un chat et si tu as de la chance tu va peut être matcher avec l'animal de compagnie de t'as vie !
 
 ## Cahier des charges
 
