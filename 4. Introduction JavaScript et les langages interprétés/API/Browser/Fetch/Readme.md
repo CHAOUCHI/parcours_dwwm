@@ -1,5 +1,16 @@
 # L'API Fetch, récupérer des données depuis un serveur.
+
 Pré-requis : https://developer.mozilla.org/fr/docs/Web/HTTP/Overview#les_messages_http
+
+## Documentations
+- fetch() : https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
+- Promise : https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Using_promises
+- Promise.prototype.then() : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+- Promise.prototype.catch() : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch
+- Response : https://developer.mozilla.org/en-US/docs/Web/API/Response
+- Response.prototype.json() : https://developer.mozilla.org/en-US/docs/Web/API/Response/json
+- Response.prototype.text() : https://developer.mozilla.org/en-US/docs/Web/API/Response/text
+
 ## I - Qu'est ce que c'est ?
 L'*API Fetch* est un client HTTP utilisable en JavaScript. Au même titre que les objets : `console`, `document` ou `localStorage` l'*API Fetch* est accesible via l'objet window. 
 
