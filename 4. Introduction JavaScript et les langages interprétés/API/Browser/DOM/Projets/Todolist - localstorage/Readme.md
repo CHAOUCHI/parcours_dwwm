@@ -109,7 +109,6 @@ function getAllFruits(){
 
 *une fonction setter*
 ```js
-
 function addFruit(newFruit){
     const fruitsJSON = localStorage.getItem("fruits");
 
@@ -124,8 +123,10 @@ function addFruit(newFruit){
 }
 ```
 
-Ici je n'ai fais que deux fonctions mais il est habituel de créer plusieurs fonctions plus ou moins spécifique pour former un CRUD (Create, Read, Update, Delete) .
+Ici je n'ai fais que deux fonctions mais il est habituel de créer plusieurs fonctions plus ou moins spécifiques pour former un CRUD (Create, Read, Update, Delete) .
 
 - getFruitByName
 - getFruitById
 - getFruitsByCategory
+- deleteFruitById()
+- ...
