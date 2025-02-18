@@ -439,4 +439,3 @@ Cela permet de récupérer le texte brut de la réponse.
 - Créer un pokedex à partir des données de l'api rest Pokebuild.
 - Si vous connaissez un langage back-end comme PHP, créer une boutique ecommerce ou un blog avec un back-end PHP(API REST JSON) et un front-end JavaScript.
 - Créer une application météo à partir de l'api rest OpenMeteo et l'api Geolocation de JavaScript.
-

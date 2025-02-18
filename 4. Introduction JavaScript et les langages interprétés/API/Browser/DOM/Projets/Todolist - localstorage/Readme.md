@@ -118,7 +118,7 @@ function addFruit(newFruit){
     const fruits = JSON.parse(fruitsJSON);
     fruits.push(newFruit);
 
-    localStorage.setItem("fruits",fruits);
+    localStorage.setItem("fruits",JSON.stringify(fruits));
 
     return;
 }
