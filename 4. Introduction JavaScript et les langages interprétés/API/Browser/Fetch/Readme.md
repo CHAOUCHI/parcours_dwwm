@@ -46,7 +46,7 @@ Toutes ces opérations neccessites l'envoi d'une requête HTTP à un serveur, ma
 >**L'envoi de requête HTTP avant `fetch` :**
 >Avant l'envoi de requêtes HTTP en JavaScript, la seule façon de récupérer ou d'envoyer des données à un serveur HTTP était via un formulaire HTML ou l'url et le langage PHP.
 >
->PHP s'execute sur le serveur et génère le HTML coté serveur, le navigateur devait donc recharger toute la page afficher les nouvelles données. Ce qui rendait la navigation sur le web bien moins fluide que sur des applications mobile ou bureau.
+>PHP s'execute sur le serveur et génère le HTML coté serveur, le navigateur devait donc recharger toute la page pour afficher les nouvelles données. Ce qui rendait la navigation sur le web bien moins fluide que sur des applications mobile ou bureau.
 
 
 ## III - La méthode fetch en détail
@@ -345,6 +345,9 @@ Response.prototype.json() : Promise<Objet | Array>
 La méthode `response.json()` renvoi une `Promise` qui se résout en un objet JavaScript.
 > Si le body contient un tableau JSON la `Promise` fournira un tableau JavaScript.
 
+> **Attention** si le body ne correspond pas à une string JSON valide fetch() produira une erreur.
+
+
 ```js
 fetch("https://api.open-meteo.com/v1/forecast?latitude=43.297&longitude=5.3811&hourly=temperature_2m&forecast_days=1")
 .then(response=>{
@@ -361,7 +364,8 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=43.297&longitude=5.3811&h
 ```
 > Voir la doc de l'api OpenMeteo : https://open-meteo.com/en/docs#latitude=43.297&longitude=5.3811&forecast_days=1
 
-L'objet data ressemble à ceci :
+L'objet data ressemble à ceci,il contient des informations météorologique :
+
 ```js
 Object {
     elevation: 30
@@ -375,7 +379,7 @@ Object {
     utc_offset_seconds: 0
 }
 ```
-L'objet data possède des attributs analogue au body de la réponse HTTP brut :
+Les attributs de l'objets data sont analogues au body de la réponse HTTP brut suivante (celle de l'api OpenMeteo) :
 
 ```http
 HTTP/1.1 200 OK
@@ -427,13 +431,100 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-#### La méthode `text()` de la classe `Response`
+#### La méthode `response.text()` de la classe `Response`
+
 ```js
 Response.prototype.text() : Promise<string>
 ```
-La méthode `response.text()` fonctionne comme `response.json()` à la différence qu'il ne produit pas un objet JavaScript à partir de JSON mais une `string` à partir du body de la réponse HTTP, quel qu'il soit.
+La méthode `response.text()` fonctionne comme `response.json()` à la différence qu'elle ne produit pas un objet JavaScript mais une `string` contenant le body de la réponse HTTP, quel qu'il soit.
+
 Cela permet de récupérer le texte brut de la réponse.
 
+```js
+const promesse = fetch("http://leboncoin.fr");
+promesse.catch(error=>{
+    console.log(error)
+});
+
+console.log(promesse);
+```
+
+1. Testez ce code dans le navigateur.
+
+Le serveur de http de leboncoin.fr est protégé contre les clients http inabituels, Voilà pourquoi la promesse est à l'etat(*state*) *rejected* et qu'une erreur apparait dans la console.
+
+> J'ai volontairement omit les appels eux méthode then car je sais que la requete echoue dans tout les cas. J'ai juste récupéré (*catch*) sont erreur pour l'afficher dans la console.
+
+
+Soit là requête http suivante :
+```http
+GET leboncoin.fr HTTP/1.1
+```
+
+
+1. Testez cette requête. 
+    - Télécharez l'extension VSCode *Rest Client*.
+    - Ecrivez la requte HTTP précedente dans un fichier client.http
+    - Cliquez sur le lien *Send Request* qui est normalement apparu au dessus du texte de la requete.
+
+Le serveur de leboncoin.fr nous renvoi du html dans le body.
+
+2. Cherchez le HTML dans le body de la réponse affiché dans VSCode.
+
+Voici le resultat du html une fois ouvert dans un navigateur web.
+
+![alt text](image.png)
+
+
+
+### Comprendre la réponse
+
+Soir la réponse http brut de la requete `GET localhost:8080` :
+```http
+HTTP/1.1 403 Forbidden
+Content-Type: text/html; charset=utf-8
+Content-Length: 739
+Connection: close
+Date: Sun, 23 Feb 2025 17:39:33 GMT
+set-cookie: datadome=NgrywLNkijyTRUj8PULoVqd1VR687dxkZfQkwabNLa~v6QREydP7Nan2~3XhLCnxGIlfvizqt3yZebfcjXtl17eRtDA~LpEdMe~0zHNVLQvN5_GYr5hWSBrtD6Nf7Xiu; Max-Age=31536000; Domain=.leboncoin.fr; Path=/; Secure; SameSite=Lax
+strict-transport-security: max-age=15768000
+referrer-policy: no-referrer-when-downgrade
+content-security-policy: frame-ancestors *.leboncoin.fr *.leboncoin.io *.leboncoin.ci; report-uri https://api.leboncoin.fr/api/csp-report/v1/report/;
+content-security-policy-report-only: object-src *.leboncoin.fr *.leboncoin.io *.leboncoin.ci; frame-ancestors *.leboncoin.fr *.leboncoin.io *.leboncoin.ci; report-uri https://api.leboncoin.fr/api/csp-report/v1/report/;
+x-datadome: protected
+accept-ch: Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory
+charset: utf-8
+cache-control: max-age=0, private, no-cache, no-store, must-revalidate
+pragma: no-cache
+access-control-allow-credentials: true
+access-control-expose-headers: x-dd-b, x-set-cookie
+access-control-allow-origin: *
+x-datadome-cid: AHrlqAAAAAMAZszSnSVyBa4AJUKbTQ==
+x-dd-b: 1
+X-Cache: Error from cloudfront
+Via: 1.1 d5ee2aa873a3cb23609433e0272dd41c.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: CDG50-P2
+X-Amz-Cf-Id: Kg2O0rWNv7PxBi8L23HbQIhHavF_z3r74KAEEut8hka_yxtrIUUJ2A==
+
+<html lang="en"><head><title>leboncoin.fr</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style="margin:0"><p id="cmsg">Please enable JS and disable any ad blocker</p><script data-cfasync="false">var dd={'rt':'c','cid':'AHrlqAAAAAMAZszSnSVyBa4AJUKbTQ==','hsh':'05B30BD9055986BD2EE8F5A199D973','t':'fe','qp':'','s':2089,'e':'6d1daa7957d27b1ad23ab8ecc85d07bd3754746397dc6e809787d353e1dcd114','host':'geo.captcha-delivery.com','cookie':'NgrywLNkijyTRUj8PULoVqd1VR687dxkZfQkwabNLa~v6QREydP7Nan2~3XhLCnxGIlfvizqt3yZebfcjXtl17eRtDA~LpEdMe~0zHNVLQvN5_GYr5hWSBrtD6Nf7Xiu'}</script><script data-cfasync="false" src="https://ct.captcha-delivery.com/c.js"></script></body></html>
+```
+
+Voici la première ligne d'une réponse HTTP.
+```http
+HTTP/1.1 403 Forbidden
+```
+
+On y voit :
+    - la version de HTTP utilisé par le serveur
+    - Le StatusCode de réponse (comme le fameux 404 Not Found)
+    - La message explicatif du StatusCode
+
+1. Selon vous, pourquoi la requete de REST Client à été réfusé ?(Forbidenn : Interdite) 
+
+
+
+> Réponse : Le user-agent( le client http ) n'à pas été reconnu comme fiable par le serveur http de leboncoin.fr. Ilà donc renvoyez un status 403 : ressource interdite au client.
+> Ressource : la donnée que le client 
 
 ## Idée de projet pour apprendre fetch
 - Créer un pokedex à partir des données de l'api rest Pokebuild.
