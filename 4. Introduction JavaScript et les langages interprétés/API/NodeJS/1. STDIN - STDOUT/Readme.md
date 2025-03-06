@@ -1,4 +1,4 @@
-# STDIN et STDOU - Input output linux avec nodejs
+# STDIN et STDOUT - Input output linux avec nodejs
 Comme premier exemple d'api Node JS. Nous allons vouloir accéder à stdin et stdout sur notre système Linux.
 
 Notre objectif est donc de pouvoir récupérer l'entrée du terminal utilisateur(stdin). Et d'écrire Dans stdout Le terminal utilisateur. 
@@ -58,7 +58,7 @@ function formatMessage(userName,userText){
 }
 ```
 
-### La fonction `createInterface()`
+### Lire dans le terminal - La fonction `createInterface()`
 
 #### Demander une fois dans le terminal
 La fonction `createInterface()` permet de créer un objet qui possède des fonctions d'accès en lecteur et écriture sur des file descriptors(fd).
@@ -135,7 +135,7 @@ function onUserAnswer(answer){
 ```
 
 
-Si je veux arrété d'écouter, par exemple après 3 line tapées, je peux utiliser les fonctions *removeListener* puis *close* pour fermer mon interface.
+Si je veux arréter d'écouter, par exemple après 3 line tapées, je peux utiliser les fonctions *removeListener* puis *close* pour fermer mon interface.
 
 ```js
 import { stdin, stdout } from "process";

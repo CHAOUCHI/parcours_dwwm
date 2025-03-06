@@ -1,6 +1,9 @@
 # Quiz NODEJS
 **Après avoir lu le readme faite ce projet :**
 ## Synopsis
+
+Concevez un programme de quizz qui pose des questions en boucle à l'utilisateur et affiche son score à chaque fois.
+
 Voici un tableau de questions écrivez un programme qui pose les questions à l'utilisateur et augmente son score quand il à juste.
 
 Démo du programme ici :
@@ -51,6 +54,8 @@ const logger = createInterface({
 });
 
 let score = 0;
+
+// Codez ici...
 
 ``` 
 
