@@ -1,5 +1,5 @@
 # Quiz NODEJS
-
+**Après avoir lu le readme faite ce projet :**
 ## Synopsis
 Voici un tableau de questions écrivez un programme qui pose les questions à l'utilisateur et augmente son score quand il à juste.
 
