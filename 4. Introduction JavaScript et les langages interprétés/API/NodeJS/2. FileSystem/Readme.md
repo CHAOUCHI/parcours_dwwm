@@ -250,3 +250,18 @@ node copy-paste.js fichier
 ```
 
 > Vérifiez bien que fichier existe avant de lancer le programme sinon il plantera.
+
+## Lire un dossier
+
+Pour lire dans un dossier il faut utiliser la fonction `fs.readdir()`. 
+
+```js
+import fs from "fs";
+
+fs.readdir("mon_dossier",(error,files)=>{
+    console.log(error);
+
+    console.log(files); // J'affiche le nom des fichiers
+
+});
+```
