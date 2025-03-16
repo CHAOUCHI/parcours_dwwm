@@ -1,5 +1,3 @@
-
-
 # Projet CopyPaster-Node
 
 Un programme nodejs en CLI qui permet de copier un fichier comme le fait la commande `cp`.

@@ -16,7 +16,7 @@ NodeJS va exécuter notre code JS et donne accès, via ses nombreuses apis au r�
 
 Pour correctement se servir de nodejs vous allez avoir besoin de deux logiciels :
 - `nodejs` pour executer votre JavaScript
-- `npm` (Node package manager) pour installer facilement des extensions non-native à nodejs (comme le connecteur mysql par exemple).
+- `npm` (Node package manager) pour génerer un projet et installer facilement des extensions non-native à nodejs (comme le connecteur mysql par exemple).
 
 ## Installer NodeJS et npm sous Windows
 Télécharger NodeJS Long term Support (LTS) ici : https://nodejs.org/en
@@ -68,9 +68,30 @@ import {prenom} from "./autre-fichier.js";
 console.log(prenom);  // Massinissa
 ```
 
-Normalement vous allez avoir un message d'avertissement d'une reparsing de CommonJS à ESModule.
+Normalement vous allez avoir un message d'avertissement d'un reparsing de CommonJS à ESModule.
 
 Il faut donc changer l'extension de nos fichiers de .js à .mjs pour utiliser la syntaxe la plus moderne ESModule : les `import from`.
+
+#### **Pourquoi les { }** dans l'import ?
+Le partage de variables entres fichiers JavaScript se fait par d'exposition d'un objet d'export.
+
+Les accolades Sont un opérateur D'extraction, d'attributs d'objets .C'est à dire Collieu D'export L'entièreté de l'objet autre fichier Je choisis uniquement Les attributs dont j'ai besoin .On appelle cela Le destructuring assignment.
+
+Mais en soi, en javascript L'export de variables se fait simplement par l'export d'un objet qui contient toutes les variables exportées. .
+
+Concrètement Je pourrais très bien exporter une variable `autreFichier` et écrire `aurtreFichier.prenom` dans mon code. 
+
+autre-fichier.js
+```js
+export let prenom = "Massinissa";
+```
+
+*main.js*
+```js
+import autreFichier from "./autre-fichier.js";
+
+console.log(autreFichier.prenom);  // Massinissa
+```
 
 ### CommonJS
 Nodejs est sortie avant l'uniformisation du JavaScript avec la norme ECMAScript.
@@ -102,9 +123,7 @@ NodeJS execute le code de autre-fichier lors de l'appel de require qui return la
 > https://www.w3schools.com/JS//js_destructuring.asp
 
 
-Je me permet d'utiliser les deux syntaxes de temps à autre dans le cours. Vous devez les connaitres toutes les deux, même si ECModule sont est celle préféré par les frameworks (Angular, Vue, Next(React)).
+Je me permet d'utiliser les deux syntaxes de temps à autre dans le cours. Vous devez les connaitres toutes les deux, même si ECModule est celle préféré par les frameworks (Angular, Vue, Next(React)).
 
 ECModule est également **la seule syntaxe disponible dans le code front-end** d'un navigateur web. Privilégié donc `import from`.
-
-## Exmple de code plus complet 
 
