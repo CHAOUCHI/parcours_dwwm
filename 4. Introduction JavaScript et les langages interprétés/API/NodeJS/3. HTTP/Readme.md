@@ -1,4 +1,21 @@
-- serveur http
+<!-- - serveur http
     - Créer un serveur http
-    - Cas d'utilisation
-        - 
+    - Réponse HTTP - Envoyer au client
+        - servir des données textuels
+            - res.write() ; Content-type : text/plain
+        - servir des données HTML
+            - res.write() ; Content-type : text/html
+        - servir un site web
+            - req.url ; fs.readFile ; Content-type : dynamic; res.write()
+        - servir du JSON
+            - res.write() ; JSON.stringify ;Content-type : application/json
+        - servir des fichiers; Buffer; Content-type : application/octet-stream
+    - Requete HTTP - Envoyer au serveur
+        - récupérer du texte
+            - fetch ; body : req.on("data")
+        - récupérer du JSON
+            - fetch ; body ; Content type application/json ;  req.on("data") JSON.parse
+        - Récupérer des query-params : https://nodejs.org/api/all.html#all_url_class-urlsearchparams
+        - Récupérer un formulaire
+            - fetch ; body : formData ; Content type multipart/form-data
+            -  req.on("data") (parse form Data)???? -->
