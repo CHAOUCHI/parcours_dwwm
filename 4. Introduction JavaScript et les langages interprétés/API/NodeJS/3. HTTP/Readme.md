@@ -86,11 +86,13 @@ Ici, notre requête a été refusée, comme le montre le code 301. C'est logique
 
 Les lignes d'après sont des variables appelées header que le serveur nous transmet pour nous informer quant à la réponse. 
 
-Par exemple, le Header Content Lenge nous informe que la réponse fait exactement 167 octets. Le header content type quant à lui, nous informe que le type de données est HTML. 
+Par exemple, le Header `Content-Length` nous informe que la réponse fait exactement 167 octets. Le header `Content-Type` quant à lui, nous informe que le type de données est `HTML`. 
 
-Les navigateurs utilisent Head pour afficher correctement les données. Si la Données est du HTML. Alors il va vous afficher une page web si la donnée est une image point PNG, alors il va vous afficher l'image 1PDF 1PDF et cetera. Le serveur renvoie les données brutes et informe du type des données et c'est au client de s'adapter pour afficher correctement les données. 
+Les navigateurs utilisent header pour afficher correctement les données. Si la données est du HTML alors il va vous afficher une page web, si la donnée est une image .png, alors il va vous afficher l'image, pour un PDF un lecteur pdf et cetera. 
 
-C'est donc ça le rôle du développeur backend, récupérer des données et les fournir via le protocole HTTP en réponse au client. En informant le client correctement Quant au type des données à leur taille, quelques informations dont il aurait besoin. C'est ensuite au développeur frontend le client de développer l'affichage des données
+Le serveur renvoie les données brutes et informe du type des données et c'est au client de s'adapter pour afficher correctement les données. 
+
+C'est donc ça le rôle du développeur backend :  récupérer des données et les fournir via le protocole HTTP en réponse au client. En informant le client correctement Quant au type des données à leur taille, quelques informations dont il aurait besoin. C'est ensuite au développeur frontend le client de développer l'affichage des données
 
 ### La ressource demandée, le body HTTP.
 La ressource demandée est une chaîne de caractères qu'on appelle le *body* HTTP. 
@@ -125,7 +127,7 @@ Les mots clés importants à retenir pour le HTTP sont :
 *server.mjs*
 ```js
 import http from "http";
-import {readFileSync} from "http";
+import {readFileSync} from "fs";
 
 const server = http.createServer((request,response)=>{
     
@@ -139,6 +141,11 @@ server.listen(4000);
 ```
 ```bash
 node server.mjs
+```
+
+Accéder au serveur sur un navigteur à l'adresse http://localhost:4000 ou en ligne de commande avec curl.
+```
+curl --verbose localhost:4000
 ```
 
 Vous trouverez un exemple complet ici : 
