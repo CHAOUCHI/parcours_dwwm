@@ -765,6 +765,31 @@ void* second_thread_fonction(void* arg){
 
 > Les fonctions thread renvoi toujours `void*` et prennent toujours un seul et unique paramètre de type `void*`
 
+## pthread_create() passer un argument à la fonction thread
+Parfois il est utile de fournir à la fonction du nouveau thread une donnée, comme par exemple le file descriptor d'un client apres con acceptation par un serveur TCP.
+
+main.c
+```c
+void* second_thread_fonction(void* arg);
+
+int main(){
+
+    int valeur = 11;
+
+    pthread_t my_thread;
+    pthread_create(&my_thread,NULL,second_thread_fonction,(void*)&valeur); // Run thread et lui passer l'adresse d'une donnée
+
+    return 0;
+}
+
+void* second_thread_fonction(void* arg){
+    int valeur = *((int*)arg)
+
+    printf("%d",valeur);
+    return 0;
+}
+```
+
 ## pthread_join() - attendre qu'un thread se finisse
 Un thread etant une action asyncrone, la fonction main n'attend pas la fin d'un thread avant de ce terminer. Ce qui a pour concequence la potentiel non-execution du thread.
 
