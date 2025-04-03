@@ -386,10 +386,44 @@ Par contre, si le client a fourni une ressource inconnue dans la requête, la r�
 HTTP/1.1 404 Not Found
 ```
 
+### Header
+Il n'y a aucune différence entre les headers d'une requête et les headers d'une réponse. 
+
+Il est tout de même important de savoir qu'un serveur qui ENVOi une donnée en réponse doit précise le content-type de la donnée.
+### Body
+Il n'y a aucune différence entre le body d'une requête et celle d'une réponse.
+
+Il est tout de même important de savoir qu'un serveur qui ENVOi une donnée en réponse doit préciser cette donnée dans le body de la réponse.
+
+La réponse de donc obligatoirement être au format textuel.
+
+C'est plutôt facile de s imaginer ça pour du json par contre pour des fichiers c'est plus compliqué.
+
+Pour la réponse de fichier il y a 2 méthodes :
+- Envoyez simplement dujison qui contient l'URL du fichier.(Le plus courant)
+- Serialiser le fichier en base64 pour envoyer le fichier brut dans la réponse.
+
+Par exemple, pour voir que l'a PI Pokémon envoie les images sous la forme d'un URL placé dans un objet JSON.
+
+```http
+https://pokebuildapi.fr/api/v1/pokemon/Pikachu
+```
+
+Réponse :
+
+```http
+{
+    "id":25,
+    "pokedexId":25,
+    "name":"Pikachu",
+    "image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+}
+```
+
+Ici, l'image du pokemon est une URL sur un serveur HTTP qui s'appelle visiblement `raw.githubusercontent.com/PokeAPI`.
 
 
-
-
+Peu importe votre cas de figure, la plupart du temps, une réponse HTTP d'une API REST sera de `Content-Type: application/json` alors qu'une réponse HTTP d'un serveur web classique sera de `Content-Type: text/html`.
 
 ## Exemple de serveur HTTP
 
