@@ -493,9 +493,11 @@ while(1){
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 
-#define SERVER_PORT 3001
-#define CLIENT_PORT 4001
+#define SERVER_PORT 3000
+#define MAX_PACKET_SIZE BUFSIZ*10
+#define TEXT_SIZE 255
 
 int main(){
 
@@ -508,20 +510,6 @@ int main(){
     if(client_fd == -1) return EXIT_FAILURE;
 
     /**
-     * bind
-     * Je relie le socket à un port et une ip avec la fonction bind()
-     */
-    struct sockaddr_in client_addr = {
-        .sin_addr.s_addr = INADDR_ANY,
-        .sin_family = AF_INET,
-        .sin_port = htons(CLIENT_PORT)
-    };
-    int error = bind(client_fd,(struct sockaddr*)&client_addr,sizeof client_addr);perror("bind");
-    if(error == -1) { close(client_fd); return EXIT_FAILURE; }
-
-
-
-    /**
      * connect
      * Je connecte mon socket client au socket server situé en 127.0.0.1:SERVER_PORT
      */
@@ -530,23 +518,28 @@ int main(){
         .sin_family = AF_INET,
         .sin_port = htons(SERVER_PORT)
     };
-    error = connect(client_fd,(struct sockaddr*)&server_addr,sizeof server_addr);perror("connect");
+    int error = connect(client_fd,(struct sockaddr*)&server_addr,sizeof server_addr);perror("connect");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
+    // Je demande le pseudo à l'utilsiateur
+    char pseudo[TEXT_SIZE];memset(pseudo,0,TEXT_SIZE);
+    fgets(pseudo,TEXT_SIZE,stdin);
+
+
     // SOCKET CLIENT PRET A COMMUNIQUER !
-    int error = 0;
+    error = 0;
     while(error != -1){
         // Je demande le message à l'utilsiateur
-        char message[BUFSIZ];memset(message,0,BUFSIZ);
-        fgets(message,BUFSIZ,stdin);
+        char message[TEXT_SIZE];memset(message,0,TEXT_SIZE);
+        fgets(message,TEXT_SIZE,stdin);
 
         // Je formate le message dans un buffer
         // [heure]pseudo : message...
-        char buf[BUFSIZ];memset(buf,0,BUFSIZ);
-        sprintf(buf,"[%d]%s:%s",time(NULL),pseudo,message);
+        char packet[MAX_PACKET_SIZE];memset(packet,0,MAX_PACKET_SIZE);
+        sprintf(packet,"[%d]%s:%s",time(NULL),pseudo,message);
 
         // J'envoi le message au serveur du salon de discussion
-        error = send(client_fd,buf,strlen(buf),0);
+        error = send(client_fd,packet,MAX_PACKET_SIZE,0);perror("send");
     }
 
     close(client_fd);
