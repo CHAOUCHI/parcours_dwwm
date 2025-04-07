@@ -26,9 +26,12 @@ Voici un exemple de serveur HTTP qui accepte une connexion client, lit le messag
 
 Ce serveur fournit un nombre aléatoire entre *min* et *max*. min et max sont fournit dans l'url comme ceci :
 
-```http
-http://localhost:3030/random?min=2&max=8
 ```
+curl "http://localhost:3030/random?min=2&max=8"
+```
+
+> Attention à ne pas oublier de mettre les `""` sinon le `&` sera compris par bash comme l'opérateur asyncrone.
+> https://www.gnu.org/software/bash/manual/html_node/Lists.html
 
 ```js
 import http from "http";
@@ -37,12 +40,16 @@ const server = http.createServer((request, response) => {
 
     // Exemple de requete 
     // /random?min=0&max=10
-    const url = new URL(`http://localhost/${request.url}`);
-
+    const url = new URL(`http://localhost${request.url}`);
+    console.log(url.pathname)
     if(url.pathname == "/random"){
+        const min = url.searchParams.get("min") ?? 0;
+        const max = url.searchParams.get("max") ?? 10;
 
+        const randomValue = Math.random()*(max-min)+min;
+
+        response.write(randomValue.toString())
     }
-
     response.end("\n");
     
     
