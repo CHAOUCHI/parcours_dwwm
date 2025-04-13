@@ -51,7 +51,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 > ***SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c*** est la singature encodé en base64
 
-## Fournir un token JWT
+## Authentification - Fournir un token JWT au Client
+
+### Créer la route d'Authentification
 Il existe de nombreuse bibliotèques pour générer un JWT, je vais utiliser le paquet npm `jsonwebtoken`.
 
 Voir la liste des bibliotèques jwt  : https://jwt.io/libraries
@@ -73,96 +75,7 @@ app.post("/login",(req,res)=>{
 ```
 > La clé secrète doit être stockée dans un fichier séparé et ne jamais apparaitre dans un repo github (gitignore).
 
-## Vérifier un token JWT
-A chaque requete sensible, le client va devoir fournir le token jwt pour être autoriser à effectuer sa requête.
-
-Le token ce place dans le header `Authorization` de la requête et est lu à chaque requete par un middleware.
-
-> Je pourrais aussi recevoir le token dans le body de la rquete du client mais etant donné que fetch() refuse le body pour la méthode GET je ne pourrais pas fournir le token sur mes routes GET. Voilà pourquoi l'utilise le header `Authorization`.
-
-### Le client envoie le token 
-
-La requete du client ressemble donc par exemple à :
-
-```http
-POST /product HTTP/1.1
-
-Host : localhost
-Content-type : application/json
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-{
-    "name" : "Converse noire taille 42",
-    "price" : 60,
-    "categoryId" : 2
-}
-```
-En JS :
-```js
-const token = localStorage.getItem("token"); // Soit un token
-if(!token)return;
-
-const headers = new Headers();
-headers.append("Content-type","application/json");
-headers.append("Authorization",`Bearer ${token}`);
-fetch("http://localhost/product",{
-    method : "POST",
-    headers : headers,
-    body : JSON.stringify({
-        name : "Converse noire taille 42",
-        price : 60,
-        categoryId : 2
-    })
-});
-
-```
-### L'api vérifie le token
-J'utilise un middleware pour vérifier le token.
-
-Le token se trouve dans le header Authrozations je peux donc y accéder avec `req.headers.authorization`, attention tout de même il ne nous faut que la deuxième partie (sans "Bearer").
-
-```js
-const jwt = require("jsonwebtoken");
-const secret = "my-secret-key-of-the-dead";
-
-// J'utilise le middleware checkJwt pour vérifier le jwt avant la route post.
-app.post("/product",checkJwt,(req,res)=>{
-   // ...
-   res.status(200).json({...});
-})
-
-
-function checkJwt(req,res,next){
-    const authHeader = req.headers.authorization;
-    // Je récupère uniquement le token du header pas le mot Bearer
-    const token = authHeader.split(" ")[1];
-
-    jwt.verify(token,secret,(err,decodedToken)=>{
-        if(err){
-            console.log(err.message);
-            // La signature n'est pas bonne
-            // ou le token est expiré
-            // ou le token n'est pas un JWT
-            res.status(401).json("Unauthorized, wrong token");
-            return;
-        }
-        switch (decodedToken.role){
-            case "admin":
-                next();
-                break;
-
-            case "guest":
-            default:
-                res.status(401).json("Unauthorized role");
-                break;
-        }
-    })
-}
-```
-
-> Le status code 401 correspond à la réponse HTTP `Unauthorized`.
-
-## Comment stocker le token dans le front
+### Comment stocker le token dans le front ?
 Le token envoyé par l'api peut être facilement stocké dans le localStorage.
 ```js
 localStorage.setitem("token",token);
@@ -254,3 +167,93 @@ function checkJwt(req,res,next){
     })
 }
 ``` -->
+
+
+## Authorization - Vérifier le token JWT du client
+A chaque requete sensible, le client va devoir fournir le token jwt pour être autoriser à reçevoir la réponse.
+
+Le token ce place dans le header `Authorization` de la requête et est lu à chaque requete par un middleware.
+
+> Je pourrais aussi recevoir le token dans le body de la rquete du client mais etant donné que fetch() refuse le body pour la méthode GET je ne pourrais pas fournir le token sur mes routes GET. Voilà pourquoi l'utilise le header `Authorization`.
+
+### Le client envoie le token 
+
+La requete du client ressemble donc par exemple à :
+
+```http
+POST /product HTTP/1.1
+
+Host : localhost
+Content-type : application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+{
+    "name" : "Converse noire taille 42",
+    "price" : 60,
+    "categoryId" : 2
+}
+```
+En JS :
+```js
+const token = localStorage.getItem("token"); // Soit un token
+if(!token)return;
+
+const headers = new Headers();
+headers.append("Content-type","application/json");
+headers.append("Authorization",`Bearer ${token}`);
+fetch("http://localhost/product",{
+    method : "POST",
+    headers : headers,
+    body : JSON.stringify({
+        name : "Converse noire taille 42",
+        price : 60,
+        categoryId : 2
+    })
+});
+
+```
+### L'api vérifie le token
+J'utilise un middleware pour vérifier le token.
+
+Le token se trouve dans le header Authrozations je peux donc y accéder avec `req.headers.authorization`, attention tout de même il ne nous faut que la deuxième partie (sans "Bearer").
+
+```js
+const jwt = require("jsonwebtoken");
+const secret = "my-secret-key-of-the-dead";
+
+// J'utilise le middleware checkJwt pour vérifier le jwt avant la route post.
+app.post("/product",checkJwt,(req,res)=>{
+   // ...
+   res.status(200).json({...});
+})
+
+
+function checkJwt(req,res,next){
+    const authHeader = req.headers.authorization;
+    // Je récupère uniquement le token du header pas le mot Bearer
+    const token = authHeader.split(" ")[1];
+
+    jwt.verify(token,secret,(err,decodedToken)=>{
+        if(err){
+            console.log(err.message);
+            // La signature n'est pas bonne
+            // ou le token est expiré
+            // ou le token n'est pas un JWT
+            res.status(401).json("Unauthorized, wrong token");
+            return;
+        }
+        switch (decodedToken.role){
+            case "admin":
+                next();
+                break;
+
+            case "guest":
+            default:
+                res.status(401).json("Unauthorized role");
+                break;
+        }
+    })
+}
+```
+
+> Le status code 401 correspond à la réponse HTTP `Unauthorized`.

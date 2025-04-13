@@ -9,12 +9,15 @@ import http from "http";
 
 http.createServer((req,res)=>{
     
+    // Lorsque le socket serveur reçoit CRLF
     req.on("data",(body)=>{
+        // Il vous envoie le body
+        // C'est à dire la suite de la requete HTTP(sans les headers)
         
         
-        console.log(body)
+        console.log(body); // J'affiche le body
 
-        req.end(body);
+        req.end("Body reçu, regardez la console du serveur nodejs :)");
     })
 
 }).listen(4004);
@@ -28,3 +31,26 @@ http.createServer((req,res)=>{
 node server.mjs
 ```
 
+2. Effectuez une requête HTTP avec l'api fetch coté client grâce au code suivant.
+
+```js
+
+const dataString = "Salut tout le monde !";
+
+
+const options = {
+    method : "POST", // Fetch oblige l'utilisation de la méthode POST,
+    body : dataString;
+}
+
+// J'envoi la requête HTTP
+fetch("http://localhost:4004",options)
+.then(
+    response => console.log(response)
+)
+.catch(err=>console.log(err));
+```
+
+3. Modifiez le code pour envoyer le contenu d'un formulaire HTML au serveur. Vous aurez réussi si vous voyez les données tapées dans le formulaire HTML s'afficher dans la console du serveur. *Le formulaire doit contenir les champs username et password*
+
+> Attention le serveur et le client sont dans deux dossiers sépraré et sont deux logiciels séparés !
