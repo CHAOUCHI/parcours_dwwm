@@ -17,7 +17,7 @@ http.createServer((req,res)=>{
         
         console.log(body); // J'affiche le body
 
-        req.end("Body reçu, regardez la console du serveur nodejs :)");
+        res.end("Body reçu, regardez la console du serveur nodejs :)");
     })
 
 }).listen(4004);
@@ -40,7 +40,7 @@ const dataString = "Salut tout le monde !";
 
 const options = {
     method : "POST", // Fetch oblige l'utilisation de la méthode POST,
-    body : dataString;
+    body : dataString
 }
 
 // J'envoi la requête HTTP
