@@ -8,6 +8,9 @@ import http from "http";
 
 
 http.createServer((req,res)=>{
+    // J'autorise les origines inconnus (pas localhost:4004)
+    // Obligatoire pour le fonctionnement de fetch()
+    res.appendHeader("Access-Control-Allow-Origin","*");
     
     // Lorsque le socket serveur reçoit CRLF
     req.on("data",(body)=>{
@@ -22,6 +25,13 @@ http.createServer((req,res)=>{
 
 }).listen(4004);
 ```
+
+> Pour que fetch fonctionn ej'ai ajouté un header special obligatoire pour le fonctionnement de fetch().
+> ```http
+> Access-Control-Allow-Origin : *
+> ```
+> Voir la doc sur la politique same origin
+> https://developer.mozilla.org/fr/docs/Web/HTTP/Guides/CORS
 
 > A l'inverse des headers le body peut être très volumineux, voilà pourquoi les concepteurs de nodejs on décider de rendre son accès asyncrone.
 
