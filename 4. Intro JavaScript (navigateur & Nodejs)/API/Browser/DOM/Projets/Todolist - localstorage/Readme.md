@@ -133,8 +133,8 @@ Ici je n'ai fais que deux fonctions mais il est habituel de créer plusieurs fon
 
 
 ## Annexe Architecture orientée Composant
-Je recommande d'adopter une architecture avec les composants, c'est-à-dire créer des fonctions qui renvoient des notes en utilisant les balises templates. 
+Je recommande d'adopter une architecture orientée composants, c'est-à-dire créer des fonctions qui renvoient des Node en utilisant les balises `templates`. 
 
-Pour trouver ici un repo guide qui vous décrit une proposition d'architecture logicielle.
+Vous trouverez ici un repo qui vous décrit une proposition d'architecture logicielle.
 
 https://github.com/CHAOUCHI/VanillaJS-Component-Oriented.git
