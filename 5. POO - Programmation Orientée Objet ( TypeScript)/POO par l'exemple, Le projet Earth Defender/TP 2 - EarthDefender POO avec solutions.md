@@ -2098,6 +2098,116 @@ Le seul soucis c'est que le code est inscrit un dur dans la boucé d'évenement.
 
 La façon de réagir à une collision est la résponsabilité de la classe GameObject pas de la classe Game.
 
+#### Declencher la detection de collision dans la boucle d'événément.
+
+La méthode `public GameObject.callCollide()` permet d'appeller la méthode `protected GameObject.collide()`; de la même manière que `public GameObject.callUpdate()`  appel la méthode `protected GameObject.update()`.
+
+1. Ajoutez donc la méthode protected `GameObject.callCollide()`
+
+```ts
+// CORRECTION
+import { Assets } from "../Assets.js";
+
+import { Game } from "../Game.js";
+import { Position } from "../Position.js";
+
+export class GameObject{
+    
+    private position : Position;
+    private image : HTMLImageElement;
+    private game : Game;
+    constructor(game : Game){
+        this.position = {
+            x : 0,
+            y : 0
+        };
+        this.image = Assets.getDefaultImage();
+        this.game = game;
+        this.start();
+    }
+    protected start(){}
+    protected update(){}
+    public callUpdate(){
+        this.update();
+    }
+
+    /*Nouveau code !!!**/
+
+    protected collide(other : GameObject){}
+    public callCollide(other : GameObject){
+        this.collide(other);
+    }
+
+
+    /*Nouveau code !!!**/
+
+    public overlap(other : GameObject) : boolean{
+        if(
+            // Check x axis overlap
+            (
+                other.left() <= this.left() && this.left() <= other.right()
+                ||
+                other.left() <= this.right() && this.right() <= other.right()
+                ||
+                this.left() <= other.left() && other.left() <= this.right()
+                ||
+                this.left() <= other.right() && other.right() <= this.right()
+            )
+            &&
+            (
+                // check y axis overlap
+                other.top() <= this.top() && this.top() <= other.bottom()
+                ||
+                other.top() <= this.bottom() && this.bottom() <= other.bottom()
+                ||
+                this.top() <= other.top() && other.top() <= this.bottom()
+                ||
+                this.top() <= other.bottom() && other.bottom() <= this.bottom()
+            )
+        )
+        {
+            return true;        // They overlap
+        }
+        else{
+            return false;       // They do not overlap
+        }
+    }
+    
+    /**Utility methods for gameobject position */
+    public top() : number{
+        return this.position.y;
+    }
+    public bottom() : number{
+        return this.position.y + this.image.height;
+    }
+    public left() : number{
+        return this.position.x;
+    }
+    public right() : number{
+        return this.position.x + this.image.width;
+    }
+
+
+    public getImage() : HTMLImageElement{
+        return this.image;
+    }
+    public getPosition() : Position{
+        return this.position;
+    }
+    public getGame() : Game{
+        return this.game;
+    }
+    public setImage(image : HTMLImageElement){
+        this.image = image;
+    }
+    public setPosition(position : Position){
+        this.position = position;
+    }
+}
+```
+
+2. Puis dans la boucle d'evenement (la méthode `Game.loop()`), appellez la méthode callCollide() en boucle quand deux gameObject se touche (overlap).
+
 ```ts
 private loop(){
         setInterval(()=>{
@@ -2114,7 +2224,13 @@ private loop(){
                     // Si le gameObject overlap un gameObject qui n'est pas lui même
                     if(other != go  && go.overlap(other)){
                         console.log("Deux GameObject différent se touches");
+
+                        // Nouveau code !
+
                         go.callCollide(other); // J'appel la méthode collide de mon GameObject
+
+
+
                     }
                 })
             })
@@ -2122,8 +2238,9 @@ private loop(){
 }
 ```
 
+
 #### Exercice 15
-1. Mettez en place une méthode `protected` `GameObject.collide` dans la classe `GameObject` puis implémentez la dans la classe `Alien` pour écrire "Miam Miam" dans la console quand il touche le joueur.
+1. Maintenant que la méthode `protected` `GameObject.collide` dans la classe `GameObject` est placée. Implémentez la dans la classe `Alien` pour écrire "Miam Miam" dans la console quand il touche le joueur.
 
 2. Affichez un message *GameOver!* via un `alert()` quand l'alien mange le joueur.
 
@@ -2131,6 +2248,9 @@ private loop(){
 
 #### Solution Exercice 15
 https://github.com/CHAOUCHI/EarthDefender_Exercice15
+
+
+
 
 ### Chapitre 11 - Tirer un `Laser`.
 
