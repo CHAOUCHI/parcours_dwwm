@@ -182,11 +182,16 @@ Voici comment va se dérouler la suite du cours.
 14. Ajouter une nouvelle méthode au contrôleur
 
 ## Pré-requis
+<!-- docker run --mount type=bind,src=$(pwd),target=/app -it -d -p 80:80 php8.2-apache -->
 - Un serveur LAMP
+<!-- # docker run -d --name lamp-php  --network=lamp-net -p 80:80 php:8.2-apache -->
 ```bash
+mkdir mvc-projet
 docker network create lamp-net
 
-docker run -d --name lamp-php --network=lamp-net -p 80:80 php:8.2-apache
+docker run -d --name lamp-php  --network=lamp-net -p 80:80 -v $(pwd)/mvc-projet:/var/www/html/  php:8.2-apache
+
+# docker run --mount type=bind,src=$(pwd),target=/app -it -d -p 80:80 php8.2-apache
 
 docker exec lamp-php docker-php-ext-install pdo
 docker exec lamp-php docker-php-ext-install pdo_mysql
@@ -202,16 +207,22 @@ docker start lamp-mysql
 docker start lamp-pma
 ```
 - Le module rewrite de apache d'activé, pour l'activer tapez : 
-    ```bash
-    docker exec lamp-php a2enmod rewrite
-    ```
+```bash
+docker exec lamp-php a2enmod rewrite
+```
 - Les extensions php PDO activées dans votre container docker pour toutes les activés tapez :
-    ```bash
-    docker exec lamp-php docker-php-ext-install pdo
-    docker exec lamp-php docker-php-ext-install pdo_mysql
-    docker exec lamp-php docker-php-ext-install mysqli
-    ```
-> Remplacez lamp-php par le nom de votre container php-apache.
+```bash
+docker exec lamp-php docker-php-ext-install pdo
+docker exec lamp-php docker-php-ext-install pdo_mysql
+docker exec lamp-php docker-php-ext-install mysqli
+```
+> Remplacez `lamp-php` par le nom de votre container php-apache.
+
+
+
+## Dev Container
+Ouvrez VSCode dans le dossier `mvc-projet` qui viens d'etre crée par la commande précedente.
+
 ## I - Structure du projet
 ### Arboresence du projet
 > La racine de notre projet est : `localhost/first_mvc` dans le dossier `/var/www/html/` du serveur LAMP.
