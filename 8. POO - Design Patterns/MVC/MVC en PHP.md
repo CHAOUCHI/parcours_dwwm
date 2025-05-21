@@ -183,6 +183,24 @@ Voici comment va se dérouler la suite du cours.
 
 ## Pré-requis
 - Un serveur LAMP
+```bash
+docker network create lamp-net
+
+docker run -d --name lamp-php --network=lamp-net -p 80:80 php:8.2-apache
+
+docker exec lamp-php docker-php-ext-install pdo
+docker exec lamp-php docker-php-ext-install pdo_mysql
+docker exec lamp-php docker-php-ext-install mysqli
+docker exec lamp-php a2enmod rewrite
+
+docker run -d --name lamp-mysql --network=lamp-net -e MYSQL_ROOT_PASSWORD=root mysql
+
+docker run -d --name lamp-pma --network=lamp-net -e PMA_HOST=lamp-mysql -p 8080:80 phpmyadmin
+
+docker start lamp-php
+docker start lamp-mysql
+docker start lamp-pma
+```
 - Le module rewrite de apache d'activé, pour l'activer tapez : 
     ```bash
     docker exec lamp-php a2enmod rewrite
