@@ -186,7 +186,7 @@ Voici comment va se dérouler la suite du cours.
 - Un serveur LAMP
 <!-- # docker run -d --name lamp-php  --network=lamp-net -p 80:80 php:8.2-apache -->
 ```bash
-mkdir mvc-projet
+mkdir mvc-projet # Le dossier qui contiendra votre projet
 docker network create lamp-net
 
 docker run -d --name lamp-php  --network=lamp-net -p 80:80 -v $(pwd)/mvc-projet:/var/www/html/  php:8.2-apache
@@ -222,6 +222,10 @@ docker exec lamp-php docker-php-ext-install mysqli
 
 ## Dev Container
 Ouvrez VSCode dans le dossier `mvc-projet` qui viens d'etre crée par la commande précedente.
+```bash
+ls
+code mvc-projet
+```
 
 ## I - Structure du projet
 ### Arboresence du projet
