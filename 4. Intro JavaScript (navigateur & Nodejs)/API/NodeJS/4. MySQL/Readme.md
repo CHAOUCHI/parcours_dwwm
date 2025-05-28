@@ -9,25 +9,31 @@ Une base de donnée (BDD) est un ensemble d'informations structurés. Ces inform
 ### Installer docker
 https://docs.docker.com/get-started/get-docker/
 
+> Sous linux fait juste cette commande pour une installation minimal dans Docker Desktop 
+> ```sh
+> sudo apt install docker.io
+> ```
+
 ### Un serveur MySQL avec mariadb
 
 Lancez conteneur docker mariadb en vous assurant :
-- d'exporter le port 3306 (le port du docket mysql) vers l'hôte.
-- de définir la variable d'envrionnement MARIADB_ROOT_PASSWORD==root
+- d'exporter le port `3306` (le port du docket mysql) vers l'hôte.
+- de définir le mot de passe du compte root mariadb : `MARIADB_ROOT_PASSWORD=root`
+- de définir le nom de votre database : `MARIADB_DATABASE=my_bdd`
 
 
 #### Comment lancer (run) un conteneur docker ?
 Vous pouvez chercher puis lancer un conteneur mariadb depuis docker desktop ou docker cli.
 
 
-##### Run avec Docker cli
+##### OPTION 1 : Run avec Docker cli
 
 ```bash
-docker run --detach -it --name bdd  -p 3306:3306 -e MARIADB_ROOT_PASSWORD mariadb:latest bash
+docker run --detach --name bdd  -p 3306:3306 -e MARIADB_ROOT_PASSWORD=root -e MARIADB_DATABASE=my_bdd mariadb:latest bash
 ```
 
 
-##### Run avec Docker desktop
+##### OPTION 2 : Run avec Docker desktop
 
 Autre alternative docker desktop
 
@@ -37,9 +43,10 @@ Autre alternative docker desktop
 > Le container est en quelque sorte le programme que vous souhaitez executer : un server http ou un node pour le back-end ou encore un server mysql
 3. Cliquez sur run pour lancer un container à partir de l'image.
 4. Configurez le container comme ceci :
-    - container name : mariadb-server
+    - container name : bdd
     - Host port : 3306
     - Variable d'environnement : MARIADB_ROOT_PASSWORD=root
+    - Variable d'environnement : MARIADB_DATABASE=my_bdd
 
 > Le port `3306` du socket de mysql est rendu disponible sur l'hote (votre OS) pour pouvoir permettre une application de se connecté comme un server nodejs par exemple.
 
@@ -52,13 +59,14 @@ Autre alternative docker desktop
 ### Un client mysql - Faire des requêtes SQL
 On va avoir besion d'un client mysql pour tester des requetes SQL et créer notre première base de donnée.
 
-Installer un client mysql
+1. Installer un client mysql
 ```bash
 sudo apt install mariadb-client
 ```
 
 Si votre container mariadb tourne sur le port 3306 connecté vous avec le mariadb-client avec la commande suivante.
 
+2. Connectez vous au serveur mysql
 ```bash
 mariadb --host=127.0.0.1 --user=root --password=root
 ``` 
@@ -75,20 +83,23 @@ Un prompt doit apparaitre :
 MariaDB [(none)]> 
 ```
 
-### Créer une bdd pour notre application
+3. Accéder à la bdd my_bdd
 
 ```sql
-CREATE DATABASE my_back
+USE my_bdd
 ```
 
-Je peux voir mes databases avec la commande SHOW DATABASES;
-
-```sql
-SHOW DATABASES;
+*Vous etes bien dans la BDD my_bdd!*
+```bash
+MariaDB [(my_bdd)]> 
 ```
 
+4. Testez une requete SQL pour voir si tout marche
 
-> Vous pouvez créer autant de base de données différente, le plus souvent une pour chaque projet. Vous pouvez les nommer par le nom du projet.
+```bash
+MariaDB [(my_bdd)]> SELECT 1+1;
+```
+
 
 ## Exercices SQL
 1. *<a href="https://www.w3schools.com/sql/sql_intro.asp">Pratiquer les requetes précedents sur w3schools.com</a>*
