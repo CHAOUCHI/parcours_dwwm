@@ -23,22 +23,22 @@ Cette communication repose sur un modèle client-serveur.
 #### **Installer Apache2**
 
 1. **Mise à jour du système Linux**
-   ```bash
-   sudo apt update && sudo apt upgrade
-   ```
+```bash
+sudo apt update && sudo apt upgrade
+```
 
 2. **Installation d'Apache2**
-   ```bash
-   sudo apt install apache2
-   ```
-   - Vérifier que le service Apache est en cours d'exécution :
-   ```bash
-   systemctl status apache2
-   ```
-   >- Si le service n'est pas activé lancez le avec systemctl
-   >```bash
-   >sudo systemctl restart apache2
-   >```
+```bash
+sudo apt install apache2
+```
+- Vérifier que le service Apache est en cours d'exécution :
+```bash
+systemctl status apache2
+```
+>- Si le service n'est pas activé lancez le avec systemctl
+>```bash
+>sudo systemctl restart apache2
+>```
 
 #### Se rendre sur le site web
 Par défaut *apache* place un site web de test dans le dossier : `/var/www/html/`.
