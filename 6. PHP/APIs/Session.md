@@ -17,7 +17,7 @@ Le principal intérêt des sessions réside dans leur capacité à :
 
 Les sessions fonctionnent grâce à un identifiant unique généré pour chaque utilisateur, appelé **Session ID**. Ce dernier est souvent transmis au navigateur via un cookie nommé `PHPSESSID`. Voici les étapes principales d'utilisation d'une session :
 1. **Initialisation** : Une session est démarrée à l'aide de la fonction `session_start()`.
-2. **Stockage des données** : Les informations sont stockées dans un tableau associatif global appelé `$_SESSION`.
+2. **Stockage des données** : Les informations sont stockées dans un tableau associatif global appelé `$_SESSION`(similaire a $_POST sauf que c'est a vous de gerer ses valeurs).
 3. **Accès aux données** : Les données de session peuvent être consultées ou modifiées à tout moment tant que la session est active.
 4. **Destruction** : Une session peut être détruite pour effacer les données utilisateur.
 
@@ -33,7 +33,7 @@ Voici un exemple concret qui illustre comment utiliser une session pour impléme
 // Démarrage ou reprise de la session
 session_start();
 
-// Vérifie si la clé 'nb_vue' existe dans la session
+// Je verifie si la clé 'nb_vue' existe et l'inisialise a 0. C'est simplement pour éviter que mon programme plante au premier chargement de page.
 if (!isset($_SESSION['nb_vue'])) {
     // Initialisation du compteur
     $_SESSION['nb_vue'] = 0;
