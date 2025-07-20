@@ -4,7 +4,7 @@
 
 Dans le développement web, une session est un mécanisme qui permet de conserver des données spécifiques à un utilisateur tout au long de sa navigation sur un site. Contrairement aux cookies, qui sont stockés côté client, les sessions conservent les données côté serveur, offrant une solution plus sécurisée pour la gestion des informations sensibles.
 
-Les sessions permettent la **persistance de données** sans avoir à créer soi-même des fichiers de sauvegarde. Cela signifie que les informations d’un utilisateur peuvent être conservées entre différentes pages d’un site web sans nécessiter d’écriture disque ou de gestion manuelle des fichiers.
+Les sessions permettent la **persistance de données** sans avoir à créer soi-même des fichiers de sauvegarde. Cela signifie que les informations d’un utilisateur peuvent être conservées entre différentes pages d’un site web sans nécessiter de gestion manuelle des fichiers.
 
 #### Intérêt des Sessions
 
